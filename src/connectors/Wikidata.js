@@ -1,3 +1,5 @@
+import wd from 'wikidata-sdk';
+
 export default class Wikidata {
 
   constructor() {
@@ -5,9 +7,13 @@ export default class Wikidata {
   }
 
   query(query) {
-    return new Promise(resolve => {
-      resolve([{ label: 'Michael Crichton Q172140'}]);
-    });
+    const url = wd.searchEntities(query);
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => data.search.map(result => {
+        const { id, label, description, concepturi } = result;
+        return { id, label, description, uri: concepturi };
+      }));
   }
 
 }

@@ -19,7 +19,7 @@ export default class SemanticTagMultiSelect extends Component {
     this.state = {
       isDropdownOpen: false,
       query: '',
-      selectedSource: SOURCES[0],
+      selectedSource: SOURCES[1],
       suggestions: []
     }
   }
@@ -81,7 +81,9 @@ export default class SemanticTagMultiSelect extends Component {
             <div className="r6o-semtags-dropdown-bottom">
               <ul>
                 {this.state.suggestions.map(suggestion =>
-                  <li key={suggestion.label}>{suggestion.label}</li>
+                  <li key={suggestion.label}>
+                    {suggestion.label} <br/>  {suggestion.description}
+                  </li>
                 )}
               </ul>
             </div>
