@@ -1,0 +1,25 @@
+$blueish-white:#ecf0f1;
+$blueish-white-hi:lighten($blueish-white, 3%);
+
+.r6o-widget.r6o-semtags {
+  padding:10px;
+}
+
+.r6o-semtags-dropdown-container {
+  position:absolute;
+  background-color:#fff;
+  z-index:9999;
+
+  -webkit-border-radius:2px;
+   -khtml-border-radius:2px;
+     -moz-border-radius:2px;
+          border-radius:2px;
+
+  -webkit-box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
+     -moz-box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
+          box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
+}
+
+.r6o-semtags-dropdown-bottom {
+  background-color:$blueish-white-hi;
+}
