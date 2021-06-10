@@ -1,25 +1,120 @@
+$ocean:#4483c4;
+
 $blueish-white:#ecf0f1;
 $blueish-white-hi:lighten($blueish-white, 3%);
 
+$lightgrey-border:#e5e5e5;
+$lightgrey-border-darker:#d6d7d9;
+
 .r6o-widget.r6o-semtags {
+  font-size:14px;
+}
+
+.r6o-semtags-taglist {
   padding:10px;
 }
 
 .r6o-semtags-dropdown-container {
-  position:absolute;
-  background-color:#fff;
-  z-index:9999;
+  position:relative;
 
-  -webkit-border-radius:2px;
-   -khtml-border-radius:2px;
-     -moz-border-radius:2px;
-          border-radius:2px;
+  .r6o-semtags-dropdown {
+    position:absolute;
+    width:100%;
+    background-color:#fff;
+    z-index:9999;
+    overflow:hidden;
+  
+    -webkit-border-radius:2px;
+     -khtml-border-radius:2px;
+       -moz-border-radius:2px;
+            border-radius:2px;
+  
+    -webkit-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
+       -moz-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
+            box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
+  }
 
-  -webkit-box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
-     -moz-box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
-          box-shadow:2px 2px 18px rgba(0, 0, 0, .3);
+  ul {
+    padding:0; 
+    margin:0;
+    list-style-type:none;
+  }
+
+  .r6o-semtags-search {
+    padding:0;
+    margin:0;
+    background-color:#fff;
+    border-bottom:1px solid $lightgrey-border;
+    
+    input {
+      width:100%;
+      outline:none;
+      background-color:transparent;
+      border:none;
+      box-sizing:border-box;
+      padding:12px 10px;
+      margin:0;
+    }
+
+  }
+
+  .r6o-semtags-sources {
+    border-bottom:1px solid $lightgrey-border-darker;
+    
+    ul {
+      padding-left:8px;
+      padding-right:8px;
+    }
+
+    li {
+      padding:5px 12px 1px 12px;
+      display:inline-block;
+      cursor:pointer;
+    }
+
+    li.selected {
+      border-bottom:4px solid $ocean;
+    }
+
+  }
+
+  .r6o-semtags-dropdown-bottom {
+    background-color:$blueish-white-hi;
+    box-shadow:inset 0 7px 8px -10px rgba(0,0,0,0.35);
+    overflow-y:auto;
+    min-height:120px;
+    max-height:320px;
+
+    li {
+      padding:10px;
+      border-bottom:1px solid $lightgrey-border;
+      line-height:150%;
+
+      .id {
+        color:desaturate($ocean, 20%);
+        display:inline-block;
+        margin-right:2px;
+      }
+
+      p {
+        padding: 0;
+        margin: 0;
+        font-size: 13px;
+      }
+    }
+
+    li:last-child {
+      border-bottom:none;
+
+
+    }
+
+    li:hover {
+      background-color:rgba(255, 255, 255, 0.8);
+      cursor:pointer;
+    }
+
+  }
+
 }
 
-.r6o-semtags-dropdown-bottom {
-  background-color:$blueish-white-hi;
-}

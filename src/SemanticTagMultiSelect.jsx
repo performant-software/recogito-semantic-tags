@@ -58,34 +58,40 @@ export default class SemanticTagMultiSelect extends Component {
         
         { this.state.isDropdownOpen && 
           <div className="r6o-semtags-dropdown-container">
-            <div className="r6o-semtags-dropdown-top">
-              <div className="r6o-semtags-search">
-                <input type="text" value={this.state.query} onChange={this.onChangeQuery} />
+            <div className="r6o-semtags-dropdown">
+              <div className="r6o-semtags-dropdown-top">
+                <div className="r6o-semtags-search">
+                  <input type="text" value={this.state.query} onChange={this.onChangeQuery} />
+                </div>
+                <div className="r6o-semtags-sources">
+                  <ul>
+                    { SOURCES.map(source =>
+                      <li 
+                        key={source.label} 
+                        className={source === this.state.selectedSource && 'selected'}
+                        onClick={this.onSelectSource(source)}>
+
+                        {source.label}
+
+                      </li>
+                    )}
+                  </ul>
+                </div>
               </div>
-              <div className="r6o-semtags-sources">
+
+              <div className="r6o-semtags-dropdown-bottom">
                 <ul>
-                  { SOURCES.map(source =>
-                    <li 
-                      key={source.label} 
-                      className={source === this.state.selectedSource && 'selected'}
-                      onClick={this.onSelectSource(source)}>
-
-                      {source.label}
-
+                  {this.state.suggestions.map(suggestion =>
+                    <li key={suggestion.label}>
+                      <label>
+                        <span className="id">{suggestion.id}</span> {suggestion.label}
+                      </label>
+                      
+                      <p className="description">{suggestion.description}</p>
                     </li>
                   )}
                 </ul>
               </div>
-            </div>
-
-            <div className="r6o-semtags-dropdown-bottom">
-              <ul>
-                {this.state.suggestions.map(suggestion =>
-                  <li key={suggestion.label}>
-                    {suggestion.label} <br/>  {suggestion.description}
-                  </li>
-                )}
-              </ul>
             </div>
           </div>
         }
