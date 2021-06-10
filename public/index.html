@@ -53,9 +53,13 @@
         var r = Recogito.init({
           content: 'content', 
       	  widgets: [
-            { widget: recogito.SemanticTags },
-            'COMMENT'
+            'COMMENT',
+            { widget: recogito.SemanticTags }
           ]
+        });
+
+        r.on('createAnnotation', function(a) {
+          console.log('created', a);
         });
       })();
     </script>

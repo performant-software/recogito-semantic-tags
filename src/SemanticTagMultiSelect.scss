@@ -1,17 +1,140 @@
-$ocean:#4483c4;
-
-$blueish-white:#ecf0f1;
-$blueish-white-hi:lighten($blueish-white, 3%);
-
-$lightgrey-border:#e5e5e5;
-$lightgrey-border-darker:#d6d7d9;
+@import '@recogito/recogito-client-core/themes/default/globals/globals';
 
 .r6o-widget.r6o-semtags {
   font-size:14px;
+  background-color:$blueish-white;
+
+  ul {
+    padding:0; 
+    margin:0;
+    list-style-type:none;
+  }
+
 }
 
 .r6o-semtags-taglist {
-  padding:10px;
+  padding:4px;
+  display:flex;
+
+  button.r6o-add-semtag {
+    position:relative;
+    outline:none;
+    border:none;
+    color:$ocean;
+    cursor:pointer;
+    margin-right:8px;
+  }
+
+  button.r6o-add-semtag::after {
+    content:'+';
+    font-weight:bold;
+    font-size:18px;
+    position:absolute;
+    top:-2px;
+    right:-2px;
+  }
+
+  .r6o-semtag .r6o-semtag-tooltip {
+    display:none;
+    position:absolute;
+    left:calc(50%);
+    top:calc(-100%);
+    color:#fff;
+    transform:translateX(-50%);
+
+    label {
+      background-color:#000;
+      padding:6px 8px;  
+      @include rounded-corners(4px);
+    }
+
+    .tooltip-arrow {
+      width:0;
+      height:0;
+      left:calc(50% - 10px);
+      position:absolute;
+      margin-top:-2px;
+      border-left:10px solid transparent;
+      border-right:10px solid transparent;
+      border-top:10px solid #000;
+    }
+
+  }
+
+  .r6o-semtag:hover .r6o-semtag-tooltip {
+    display:block;
+  }
+
+  ul {
+    flex:0;
+    white-space:nowrap;
+
+    .r6o-semtag {
+      position:relative;
+    }
+
+    li {
+      margin:0;
+      display:inline-block;
+      margin:1px 1px 1px 0;
+      padding:0;
+      vertical-align:middle;
+      overflow:hidden;
+      font-size:12px;
+      background-color:#fff;
+      border:1px solid $lightgrey-border-darker;
+      position:relative;
+      line-height:180%;
+      @include r6o-noselect();
+      @include rounded-corners(2px);
+      @include box-shadow(0, 0, 4px, 0.1);
+
+      label {
+        padding:2px 8px;
+        display:inline-block;
+      }
+
+      .r6o-semtag-delete-wrapper {
+        display:inline-block;
+        padding:2px 0;
+        color:#fff;
+        width:0;
+        height:100%;
+        background-color:$ocean;
+        @include rounded-corners-right(2px);
+
+        .r6o-semtag-delete {
+          padding:2px 6px;
+        }
+
+        svg {
+          vertical-align:sub;
+        }
+
+      }
+
+      .r6o-semtag-delete-enter-active {
+        width:24px;
+        transition:width 200ms;
+      }
+
+      .r6o-semtag-delete-enter-done {
+        width:24px;
+      }
+
+      .r6o-semtag-delete-exit {
+        width:24px;
+      }
+
+      .r6o-semtag-delete-exit-active {
+        width:0;
+        transition:width 200ms;
+      }
+
+    }
+
+  }
+
 }
 
 .r6o-semtags-dropdown-container {
@@ -32,12 +155,6 @@ $lightgrey-border-darker:#d6d7d9;
     -webkit-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
        -moz-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
             box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
-  }
-
-  ul {
-    padding:0; 
-    margin:0;
-    list-style-type:none;
   }
 
   .r6o-semtags-search {

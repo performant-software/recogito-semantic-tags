@@ -29,6 +29,7 @@
   "dependencies": {
     "@recogito/recogito-client-core": "^1.2.1",
     "preact": "^10.5.13",
+    "react-transition-group": "^4.4.2",
     "wikidata-sdk": "^7.13.0"
   }
 }
