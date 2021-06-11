@@ -17,7 +17,8 @@ module.exports = {
     libraryExport: 'default'
   },
   externals: {
-    react: 'React'
+    'react': 'React',
+    'react-dom': 'ReactDOM'
   },
   performance: {
     hints: false
