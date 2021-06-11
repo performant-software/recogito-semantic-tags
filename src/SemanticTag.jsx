@@ -1,47 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { CloseIcon } from '@recogito/recogito-client-core/src/Icons';
 
-export default class SemanticTag extends Component {
+const SemanticTag = props => {
 
-  constructor(props) {
-    super(props);
+  const [ showDelete, setShowDelete ] = useState(false);
 
-    this.state = {
-      showDelete: false
-    }
-  }
+  const toggleDelete = () => 
+    setShowDelete(!showDelete);
 
-  toggleDelete = () => {
-    this.setState({ showDelete: !this.state.showDelete });
-  }
+  return (
+    <div className="r6o-semtag">
+      <li key={props.uri} onClick={toggleDelete}>
+        <label>{props.value}</label>
 
-  render() {
-    const ToolTip = () =>
-      <div className="toolTip">
-        Tooltip
-      </div>
-
-    return (
-      <div className="r6o-semtag">
-        <li key={this.props.uri} onClick={this.toggleDelete}>
-          <label>{this.props.value}</label>
-
-          <CSSTransition in={this.state.showDelete} timeout={200} classNames="r6o-semtag-delete">
-            <span className="r6o-semtag-delete-wrapper" onClick={this.props.onDelete}>
-              <span className="r6o-semtag-delete">
-                <CloseIcon width={12} />
-              </span>
+        <CSSTransition in={showDelete} timeout={200} classNames="r6o-semtag-delete">
+          <span className="r6o-semtag-delete-wrapper" onClick={props.onDelete}>
+            <span className="r6o-semtag-delete">
+              <CloseIcon width={12} />
             </span>
-          </CSSTransition>
-        </li>
+          </span>
+        </CSSTransition>
+      </li>
 
-        <div className="r6o-semtag-tooltip">
-          <label>{this.props.label} {this.props.description}</label>
-          <div className="tooltip-arrow" />
-        </div>
+      <div className="r6o-semtag-tooltip">
+        <label>{props.label} {props.description}</label>
+        <div className="tooltip-arrow" />
       </div>
-    )
-  }
+    </div>
+  )
 
 }
+
+export default SemanticTag;

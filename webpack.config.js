@@ -16,6 +16,9 @@ module.exports = {
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
+  externals: {
+    react: 'React'
+  },
   performance: {
     hints: false
   },
