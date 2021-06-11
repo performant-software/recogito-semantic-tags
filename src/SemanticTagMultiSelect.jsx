@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import VIAF from './connectors/VIAF';
 import Wikidata from './connectors/Wikidata';
+import SearchInput from './SearchInput';
 import SemanticTag from './SemanticTag';
 import { RDFIcon } from './Icons';
 
@@ -26,18 +27,18 @@ const SemanticTagMultiSelect = props => {
   useEffect(() =>
     setQuery(props.annotation?.quote), [ props.annotation ]);
 
-  const fetchSuggestions = () =>
-    selectedSource
-      .query(query)
-      .then(suggestions => setSuggestions(suggestions));
+  useEffect(() => {
+    if (isDropdownOpen && query)
+      selectedSource
+        .query(query)
+        .then(suggestions => setSuggestions(suggestions));
+  }, [ query, isDropdownOpen ]);
 
-  const onToggleDropdown = () => {
-    console.log(query);
-    if (!isDropdownOpen && query)
-      fetchSuggestions();
-
+  const onToggleDropdown = () =>
     setIsDropdownOpen(!isDropdownOpen);
-  }
+
+  const onQueryChanged = evt =>
+    setQuery(evt.target.value);
 
   const onSelectSuggestion = suggestion => () => {
     props.onAppendBody({
@@ -76,9 +77,8 @@ const SemanticTagMultiSelect = props => {
         <div className="r6o-semtags-dropdown-container">
           <div className="r6o-semtags-dropdown">
             <div className="r6o-semtags-dropdown-top">
-              <div className="r6o-semtags-search">
-                <input type="text" value={query} onChange={evt => setQuery(evt.target.value)} />
-              </div>
+              <SearchInput value={query} onChange={onQueryChanged} />
+
               <div className="r6o-semtags-sources">
                 <ul>
                   { SOURCES.map(source =>

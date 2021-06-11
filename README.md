@@ -14,6 +14,6 @@ $ npm start
 - [ ] Search results load spinner
 - [ ] Search results error message, if request fails
 - [ ] Polish design...
-- [ ] Manual query input
+- [x] Manual query input
 - [ ] VIAF example
 - [ ] Abstraction: make interface to `SemanticTagMultiSelect` generic + add WebAnno wrapper

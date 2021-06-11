@@ -26,8 +26,13 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
   "dependencies": {
     "@recogito/recogito-client-core": "^1.2.3",
+    "react-debounce-input": "^3.2.3",
     "react-transition-group": "^4.4.2",
     "wikidata-sdk": "^7.13.0"
   }
