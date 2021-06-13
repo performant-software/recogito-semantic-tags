@@ -13,6 +13,7 @@ $ npm start
 
 - [ ] Search results load spinner
 - [ ] Search results error message, if request fails
+- [ ] Arrow key navigation for suggestion list?
 - [ ] Polish design...
 - [x] Manual query input
 - [ ] VIAF example
