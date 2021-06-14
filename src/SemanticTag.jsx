@@ -12,8 +12,8 @@ const SemanticTag = props => {
   }
 
   return (
-    <div className="r6o-semtag">
-      <li key={props.uri} onClick={toggleDelete}>
+    <li className="r6o-semtag-wrapper">
+      <div className="r6o-semtag" onClick={toggleDelete}>
         <label>{props.value}</label>
 
         <CSSTransition in={showDelete} timeout={200} classNames="r6o-semtag-delete">
@@ -23,13 +23,16 @@ const SemanticTag = props => {
             </span>
           </span>
         </CSSTransition>
-      </li>
+      </div>
 
       <div className="r6o-semtag-tooltip">
-        <label>{props.label} {props.description}</label>
+        <div className="label">
+          <span>{props.label}</span>
+          <span className="description">{props.description}</span>
+        </div>
         <div className="tooltip-arrow" />
       </div>
-    </div>
+    </li>
   )
 
 }

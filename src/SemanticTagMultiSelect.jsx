@@ -72,7 +72,7 @@ const SemanticTagMultiSelect = props => {
 
         {tags.length == 0 ? 
           <div className="placeholder">
-            <RDFIcon width={20} /> Click to add a semantic tag
+            <RDFIcon width={20} /> Click to add semantic tag...
           </div> : 
           <ul>
             {tags.map(tag => 

@@ -41,18 +41,28 @@
     right:-2px;
   }
 
-  .r6o-semtag .r6o-semtag-tooltip {
+  .r6o-semtag-wrapper .r6o-semtag-tooltip {
     display:none;
     position:absolute;
     left:calc(50%);
-    top:calc(-100%);
+    top:calc(-200%);
     color:#fff;
     transform:translateX(-50%);
 
-    label {
+    div.label {
       background-color:#000;
-      padding:6px 8px;  
+      padding:6px 10px 8px 10px;  
       @include rounded-corners(4px);
+      line-height:150%;
+      
+      span {
+        display:block;
+      }
+
+      span.description {
+        font-style:italic;
+      }
+
     }
 
     .tooltip-arrow {
@@ -64,11 +74,12 @@
       border-left:10px solid transparent;
       border-right:10px solid transparent;
       border-top:10px solid #000;
+      font-style:italic;
     }
 
   }
 
-  .r6o-semtag:hover .r6o-semtag-tooltip {
+  .r6o-semtag-wrapper:hover .r6o-semtag-tooltip {
     display:block;
   }
 
@@ -76,11 +87,12 @@
     flex:0;
     white-space:nowrap;
 
-    .r6o-semtag {
+    li {
       position:relative;
+      display:inline-block;
     }
 
-    li {
+    .r6o-semtag {
       margin:0;
       display:inline-block;
       margin:1px 1px 1px 0;
