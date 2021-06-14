@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { DebounceInput } from 'react-debounce-input';
+import { SearchIcon } from './Icons';
 
 const SearchInput = props => {
 
@@ -16,6 +17,10 @@ const SearchInput = props => {
         value={props.value}
         debounceTimeout={300}
         onChange={props.onChange} />
+      
+      <div className="icon">
+        <SearchIcon width={18} />
+      </div>
     </div>
   )
 

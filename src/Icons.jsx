@@ -6,7 +6,6 @@ export const RDFIcon = props => {
       <svg 
          xmlns="http://www.w3.org/2000/svg"
          version="1.1"
-         overflow="visible"
          viewBox="0 0 484 460"
          width={props.width}>
         <path
@@ -18,6 +17,19 @@ export const RDFIcon = props => {
 }
 
 export const SearchIcon = props => {
+
+   return (
+      <svg 
+         xmlns="http://www.w3.org/2000/svg" 
+         version="1.1"
+         viewBox="0 0 12 12"
+         width={props.width}>
+         <g stroke-width="2" stroke="currentColor" fill="none">
+            <path d="M11.29 11.71l-4-4"/>
+            <circle cx="5" cy="5" r="4"/>
+         </g>
+      </svg>
+   )
 
 }
 
