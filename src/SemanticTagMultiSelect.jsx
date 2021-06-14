@@ -26,7 +26,7 @@ const SemanticTagMultiSelect = props => {
 
   useEffect(() =>
     setQuery(props.annotation?.quote), [ props.annotation ]);
-
+  
   useEffect(() => {
     if (isDropdownOpen && query)
       selectedSource
@@ -61,16 +61,20 @@ const SemanticTagMultiSelect = props => {
 
   return (
     <div className="r6o-widget r6o-semtags">
-      <div className="r6o-semtags-taglist">
-        <button className="r6o-add-semtag" onClick={onToggleDropdown}>
-          <RDFIcon width={24} />
-        </button>
+      <div 
+        className={ isDropdownOpen ? 'r6o-semtags-taglist dropdown-open' : 'r6o-semtags-taglist' }
+        onClick={onToggleDropdown}>
 
-        <ul>
-          {tags.map(tag => 
-            <SemanticTag {...tag} onDelete={onDeleteTag(tag)} />
-          )}
-        </ul>
+        {tags.length == 0 ? 
+          <div className="placeholder">
+            <RDFIcon width={20} /> Click to add a semantic tag
+          </div> : 
+          <ul>
+            {tags.map(tag => 
+              <SemanticTag {...tag} onDelete={onDeleteTag(tag)} />
+            )}
+          </ul>
+        }
       </div>
       
       {isDropdownOpen && 

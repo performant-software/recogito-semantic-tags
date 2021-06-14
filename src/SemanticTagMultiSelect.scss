@@ -12,17 +12,24 @@
 
 }
 
+.r6o-semtags-taglist.dropdown-open {
+  border-color:$ocean;
+}
+
 .r6o-semtags-taglist {
   padding:4px;
   display:flex;
+  border-width:1px 1px 0 1px;
+  border-style: solid;
+  border-color:transparent;
 
-  button.r6o-add-semtag {
-    position:relative;
-    outline:none;
-    border:none;
-    color:$ocean;
-    cursor:pointer;
-    margin-right:8px;
+  .placeholder {
+    color:#c2c2c2;
+
+    svg {
+      margin:0 2px 0 5px; 
+      vertical-align:text-bottom; 
+    }
   }
 
   button.r6o-add-semtag::after {
@@ -148,22 +155,32 @@
     background-color:#fff;
     z-index:9999;
     overflow:hidden;
+    box-sizing:border-box;
+    border-width:0 1px 1px 1px;
+    border-style:solid;
+    border-color:$ocean;
   
-    -webkit-border-radius:2px;
-     -khtml-border-radius:2px;
-       -moz-border-radius:2px;
-            border-radius:2px;
+    -webkit-border-bottom-right-radius:3px;
+    -webkit-border-bottom-left-radius: 3px;
+     -khtml-border-radius-bottomright: 3px;
+     -khtml-border-radius-bottomleft:  3px;
+       -moz-border-radius-bottomright: 3px;
+       -moz-border-radius-bottomleft:  3px;
+            border-bottom-right-radius:3px;
+            border-bottom-left-radius: 3px;
   
-    -webkit-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
-       -moz-box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
-            box-shadow:2px 2px 18px rgba(0, 0, 0, .2);
+    -webkit-box-shadow:0 4px 4px rgba(0, 0, 0, .15);
+       -moz-box-shadow:0 4px 4px rgba(0, 0, 0, .15);
+            box-shadow:0 4px 4px rgba(0, 0, 0, .15);
   }
 
   .r6o-semtags-search {
     padding:0;
     margin:0;
-    background-color:#fff;
+    background-color:$blueish-white;
+    border-top:1px solid $lightgrey-border-darker;
     border-bottom:1px solid $lightgrey-border;
+    color:#3f3f3f;
     
     input {
       width:100%;
