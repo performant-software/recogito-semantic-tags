@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import useClickOutside from '@recogito/recogito-client-core/src/editor/useClickOutside';
 import VIAF from './connectors/VIAF';
 import Wikidata from './connectors/Wikidata';
 import SearchInput from './SearchInput';
@@ -15,6 +16,8 @@ const SOURCES = [
 ]
 
 const SemanticTagMultiSelect = props => {
+
+  const elem = useRef();
 
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
 
@@ -33,6 +36,8 @@ const SemanticTagMultiSelect = props => {
         .query(query)
         .then(suggestions => setSuggestions(suggestions));
   }, [ query, isDropdownOpen ]);
+
+  useClickOutside(elem, () => setIsDropdownOpen(false));
 
   const onToggleDropdown = () =>
     setIsDropdownOpen(!isDropdownOpen);
@@ -60,7 +65,7 @@ const SemanticTagMultiSelect = props => {
     props.annotation.bodies.filter(b => b.purpose === 'classifying') : [];
 
   return (
-    <div className="r6o-widget r6o-semtags">
+    <div className="r6o-widget r6o-semtags" ref={elem}>
       <div 
         className={ isDropdownOpen ? 'r6o-semtags-taglist dropdown-open' : 'r6o-semtags-taglist' }
         onClick={onToggleDropdown}>

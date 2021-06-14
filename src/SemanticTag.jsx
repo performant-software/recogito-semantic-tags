@@ -6,8 +6,10 @@ const SemanticTag = props => {
 
   const [ showDelete, setShowDelete ] = useState(false);
 
-  const toggleDelete = () => 
+  const toggleDelete = evt => {
+    evt.stopPropagation();
     setShowDelete(!showDelete);
+  }
 
   return (
     <div className="r6o-semtag">
