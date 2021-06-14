@@ -2,6 +2,8 @@
 
 A generic semantic tagging widget for RecogitoJS and Annotorious.
 
+![Example](screencast.gif)
+
 ## Development
 
 ```sh
@@ -11,8 +13,6 @@ $ npm start
 
 ## TODOs
 
-- [ ] Search results load spinner
-- [ ] Search results error message, if request fails
-- [ ] Arrow key navigation for suggestion list?
-- [ ] VIAF example
-- [ ] Abstraction: make interface to `SemanticTagMultiSelect` generic + add WebAnno wrapper
+- Arrow key navigation for suggestion list?
+- Switching sources (+ VIAF)
+- Abstraction: make interface to `SemanticTagMultiSelect` generic + add WebAnno wrapper
