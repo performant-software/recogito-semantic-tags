@@ -2,6 +2,7 @@ import React from 'react';
 
 export const RDFIcon = props => {
 
+   // https://commons.wikimedia.org/wiki/File:Rdf_logo.svg
    return (
       <svg 
          xmlns="http://www.w3.org/2000/svg"
@@ -18,6 +19,7 @@ export const RDFIcon = props => {
 
 export const SearchIcon = props => {
 
+   // https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_search-ltr.svg
    return (
       <svg 
          xmlns="http://www.w3.org/2000/svg" 
@@ -33,3 +35,37 @@ export const SearchIcon = props => {
 
 }
 
+export const LoadSpinner = () => {
+
+   // By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL
+   return (
+     <svg width="28" height="28" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+       <g fill="none" fill-rule="evenodd">
+         <g transform="translate(1 1)" stroke-width="2">
+           <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
+             <path d="M36 18c0-9.94-8.06-18-18-18">
+               <animateTransform
+                 attributeName="transform"
+                  type="rotate"
+                  from="0 18 18"
+                  to="360 18 18"
+                  dur="1s"
+                  repeatCount="indefinite"/>
+            </path>
+         </g>
+       </g>
+     </svg>
+   )
+}
+
+export const Error = () => {
+
+   // https://commons.wikimedia.org/wiki/File:Ic_error_36px.svg
+   return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 36 36">
+         <path d="M0 0h36v36h-36z" fill="none"/>
+         <path fill="currentColor" d="M18 3c-8.28 0-15 6.72-15 15s6.72 15 15 15c8.28 0 15-6.72 15-15s-6.72-15-15-15zm1 22h-2v-2h2v2zm0-5h-2v-9h2v9z"/>
+      </svg>
+   )
+
+}

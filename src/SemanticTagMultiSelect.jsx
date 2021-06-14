@@ -1,15 +1,21 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import useClickOutside from '@recogito/recogito-client-core/src/editor/useClickOutside';
-import VIAF from './connectors/VIAF';
-import Wikidata from './connectors/Wikidata';
-import SearchInput from './SearchInput';
-import SemanticTag from './SemanticTag';
+import { VIAF, Wikidata } from './connectors';
 import { RDFIcon } from './Icons';
+import {
+  SearchInput,
+  SemanticTag,
+  SuggestionsLoading,
+  SuggestionsLoaded,
+  SuggestionsFailed
+} from './components';
 
 import './SemanticTagMultiSelect.scss';
 
-// Just a hack
+/**
+ * Just a hack - needs to be pulled from an external config later
+ */ 
 const SOURCES = [
   new VIAF(),
   new Wikidata()
@@ -25,6 +31,8 @@ const SemanticTagMultiSelect = props => {
   
   const [ selectedSource, setSelectedSource ] = useState(SOURCES[1]);
 
+  const [ loadState, setLoadState ] = useState('LOADING');
+
   const [ suggestions, setSuggestions ] = useState([]);
 
   useEffect(() =>
@@ -34,7 +42,11 @@ const SemanticTagMultiSelect = props => {
     if (isDropdownOpen && query)
       selectedSource
         .query(query)
-        .then(suggestions => setSuggestions(suggestions));
+        .then(suggestions => {
+          setLoadState('LOADED');
+          setSuggestions(suggestions);
+        })
+        .catch(() => setLoadState('FAILED'));
   }, [ query, isDropdownOpen ]);
 
   useClickOutside(elem, () => setIsDropdownOpen(false));
@@ -45,7 +57,7 @@ const SemanticTagMultiSelect = props => {
   const onQueryChanged = evt =>
     setQuery(evt.target.value);
 
-  const onSelectSuggestion = suggestion => () => {
+  const onSelectSuggestion = suggestion => {
     props.onAppendBody({
       type: 'SpecificResource',
       source: suggestion.uri,
@@ -69,17 +81,17 @@ const SemanticTagMultiSelect = props => {
       <div 
         className={ isDropdownOpen ? 'r6o-semtags-taglist dropdown-open' : 'r6o-semtags-taglist' }
         onClick={onToggleDropdown}>
+        
+        <ul>
+          {tags.map(tag => 
+            <SemanticTag {...tag} onDelete={onDeleteTag(tag)} />
+          )}
+        </ul>
 
-        {tags.length == 0 ? 
-          <div className="placeholder">
-            <RDFIcon width={20} /> Click to add semantic tag...
-          </div> : 
-          <ul>
-            {tags.map(tag => 
-              <SemanticTag {...tag} onDelete={onDeleteTag(tag)} />
-            )}
-          </ul>
-        }
+        <div className="placeholder">
+          {tags.length === 0 && <RDFIcon width={20} /> } 
+          <label>Click to add semantic tag...</label>
+        </div> 
       </div>
       
       {isDropdownOpen && 
@@ -105,20 +117,16 @@ const SemanticTagMultiSelect = props => {
             </div>
 
             <div className="r6o-semtags-dropdown-bottom">
-              <ul>
-                {suggestions.map(suggestion =>
-                  <li 
-                    key={suggestion.id}
-                    onClick={onSelectSuggestion(suggestion)}>
+              {loadState === 'LOADING' &&
+                <SuggestionsLoading /> }
 
-                    <label>
-                      <span className="id">{suggestion.id}</span> {suggestion.label}
-                    </label>
+              {loadState === 'LOADED' && 
+                <SuggestionsLoaded 
+                  suggestions={suggestions}
+                  onSelectSuggestion={onSelectSuggestion} /> }
 
-                    <p className="description">{suggestion.description}</p>
-                  </li>
-                )}
-              </ul>
+              {loadState === 'FAILED' && 
+                 <SuggestionsFailed /> }
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { DebounceInput } from 'react-debounce-input';
-import { SearchIcon } from './Icons';
+
+import { SearchIcon } from '../Icons';
 
 const SearchInput = props => {
 

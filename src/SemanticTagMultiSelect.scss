@@ -27,8 +27,12 @@
     color:#c2c2c2;
 
     svg {
-      margin:0 2px 0 5px; 
+      margin-left:5px; 
       vertical-align:text-bottom; 
+    }
+
+    label {
+      margin-left:2px;
     }
   }
 
@@ -240,7 +244,6 @@
     background-color:$blueish-white-hi;
     box-shadow:inset 0 7px 8px -10px rgba(0,0,0,0.35);
     overflow-y:auto;
-    min-height:120px;
     max-height:320px;
 
     li {
