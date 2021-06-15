@@ -7,10 +7,10 @@ export default class Wikidata {
   }
 
   query(query, config) {
-    const language = config.language; // Defaults to 'en'
-    const limit = config.limit; // Defaults to 20
+    const { language, limit } = config; 
 
     const url = wd.searchEntities(query, language, limit);
+
     return fetch(url)
       .then(response => response.json())
       .then(data => data.search.map(result => {
