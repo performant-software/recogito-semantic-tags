@@ -1,19 +1,74 @@
 import React from 'react';
 import SemanticTagMultiSelect from "./SemanticTagMultiSelect";
+import { VIAF, Wikidata } from './connectors';
 
 /**
- * A note on a current limitation of the RecogitoJS/Annotorious 
- * plugin API: only class components supported at the moment,
- * no functional components and hooks.
+ * W3C annotation body -> generic 'tag' object
+ */
+const bodyToTag = body => ({
+  uri: body.source,
+  label: body.label,
+  id: body.value,
+  description: body.description
+});
+
+/**
+ * Generic 'tag' object -> W3C annotation body
+ */
+ const tagToBody = tag => ({
+  type: 'SpecificResource',
+  purpose: 'classifying', // To discuss...
+  source: tag.uri,
+  value: tag.id,
+  label: tag.label,
+  description: tag.description,
+});
+
+/**
+ * Just a hack - needs to be pulled from an external config later
+ */ 
+ const SOURCES = [
+  new Wikidata(),
+  new VIAF()
+];
+
+/**
+ * This wrapper allows us to use the SemanticTagMultiSelect 
+ * as a RecogitoJS/Annotorious plugin, while SemanticTagMultiSelect
+ * itself remains reusable as a 'normal' React component (with 
+ * no knowledge of WebAnnotations etc.)
  */
 const SemanticTagPlugin = config => props => {
 
-  // We'll use this wrapper as an adapter for using
-  // the SemanticTagMultiSelect either as a 
-  // RecogitoJS/Annotorious plugin, or a 'normal' React
-  // component (with no knowledge of WebAnnotations etc.)
+  const tagBodies = props.annotation ? 
+    props.annotation.bodies.filter(b => b.purpose === 'classifying') : [];
+
+  // Will be != null only if there is a text annotation
+  const presetQuery = props.annotation?.quote; 
+
+  const onDeleteTag = tag => {
+    const body = tagBodies.find(b => b.source === tag.uri);
+    if (body)
+      props.onRemoveBody(body);
+  }
+
+  // Tags can only be added once (no multiple tags with same URI!)
+  const onUpsertTag = tag => {
+    const existing = tagBodies.find(b => b.source === tag.uri);
+    if (existing)
+      props.onUpdateBody(existing, tagToBody(tag));
+    else
+      props.onAppendBody(tagToBody(tag));
+  }
+
   return (
-    <SemanticTagMultiSelect {...props} config={config} />
+    <SemanticTagMultiSelect 
+      dataSources={SOURCES}
+      tags={tagBodies.map(bodyToTag)}
+      query={presetQuery}
+      onAddTag={onUpsertTag}
+      onDeleteTag={onDeleteTag}
+      config={config} />
   )
 
 }

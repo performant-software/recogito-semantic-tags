@@ -1,8 +1,19 @@
 # Recogito Semantic Tags Widget
 
-A generic semantic tagging widget for RecogitoJS and Annotorious.
+A generic semantic tagging widget for RecogitoJS and Annotorious. Can also be used
+as a normal React component, similar to a standard multi-select dropdown.
 
 ![Example](screencast.gif)
+
+## Usage
+
+### As a RecogitoJS/Annotorious widget
+
+[...TODO...]
+
+### As a generic React component
+
+[...TODO...]
 
 ## Development
 
@@ -15,4 +26,3 @@ $ npm start
 
 - Arrow key navigation for suggestion list?
 - Switching sources (+ VIAF)
-- Abstraction: make interface to `SemanticTagMultiSelect` generic + add WebAnno wrapper

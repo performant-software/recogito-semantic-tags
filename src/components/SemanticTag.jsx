@@ -14,7 +14,7 @@ const SemanticTag = props => {
   return (
     <li className="r6o-semtag-wrapper">
       <div className="r6o-semtag" onClick={toggleDelete}>
-        <label>{props.value}</label>
+        <label>{props.id}</label>
 
         <CSSTransition in={showDelete} timeout={200} classNames="r6o-semtag-delete">
           <span className="r6o-semtag-delete-wrapper" onClick={props.onDelete}>

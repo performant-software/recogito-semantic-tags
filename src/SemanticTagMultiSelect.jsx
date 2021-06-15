@@ -1,7 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import useClickOutside from '@recogito/recogito-client-core/src/editor/useClickOutside';
-import { VIAF, Wikidata } from './connectors';
 import { RDFIcon } from './Icons';
 import {
   SearchInput,
@@ -13,30 +12,22 @@ import {
 
 import './SemanticTagMultiSelect.scss';
 
-/**
- * Just a hack - needs to be pulled from an external config later
- */ 
-const SOURCES = [
-  new VIAF(),
-  new Wikidata()
-]
-
 const SemanticTagMultiSelect = props => {
 
   const elem = useRef();
 
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
 
-  const [ query, setQuery ] = useState(props.annotation?.quote);
+  const [ query, setQuery ] = useState(props.query);
   
-  const [ selectedSource, setSelectedSource ] = useState(SOURCES[1]);
+  const [ selectedSource, setSelectedSource ] = useState(props.dataSources[0]);
 
   const [ loadState, setLoadState ] = useState('LOADING');
 
   const [ suggestions, setSuggestions ] = useState([]);
 
   useEffect(() =>
-    setQuery(props.annotation?.quote), [ props.annotation ]);
+    setQuery(props.query), [ props.query ]);
   
   useEffect(() => {
     if (isDropdownOpen && query)
@@ -58,23 +49,12 @@ const SemanticTagMultiSelect = props => {
     setQuery(evt.target.value);
 
   const onSelectSuggestion = suggestion => {
-    props.onAppendBody({
-      type: 'SpecificResource',
-      source: suggestion.uri,
-      value: suggestion.id,
-      label: suggestion.label,
-      description: suggestion.description,
-      purpose: 'classifying' // To discuss...
-    });
-
+    props.onAddTag(suggestion);
     setIsDropdownOpen(false);
   }
 
   const onDeleteTag = tag => () =>
-    props.onRemoveBody(tag);
-
-  const tags = props.annotation ? 
-    props.annotation.bodies.filter(b => b.purpose === 'classifying') : [];
+    props.onDeleteTag(tag);
 
   return (
     <div className="r6o-widget r6o-semtags" ref={elem}>
@@ -83,13 +63,13 @@ const SemanticTagMultiSelect = props => {
         onClick={onToggleDropdown}>
         
         <ul>
-          {tags.map(tag => 
+          {props.tags.map(tag => 
             <SemanticTag {...tag} onDelete={onDeleteTag(tag)} />
           )}
         </ul>
 
         <div className="placeholder">
-          {tags.length === 0 && <RDFIcon width={20} /> } 
+          {props.tags.length === 0 && <RDFIcon width={20} /> } 
           <label>Click to add semantic tag...</label>
         </div> 
       </div>
@@ -105,7 +85,7 @@ const SemanticTagMultiSelect = props => {
 
               <div className="r6o-semtags-sources">
                 <ul>
-                  { SOURCES.map(source =>
+                  { props.dataSources.map(source =>
                     <li 
                       key={source.label} 
                       className={source === selectedSource && 'selected'}
