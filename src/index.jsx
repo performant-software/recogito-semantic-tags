@@ -6,14 +6,14 @@ import SemanticTagMultiSelect from "./SemanticTagMultiSelect";
  * plugin API: only class components supported at the moment,
  * no functional components and hooks.
  */
-const SemanticTagPlugin = props => {
+const SemanticTagPlugin = config => props => {
 
   // We'll use this wrapper as an adapter for using
   // the SemanticTagMultiSelect either as a 
   // RecogitoJS/Annotorious plugin, or a 'normal' React
   // component (with no knowledge of WebAnnotations etc.)
   return (
-    <SemanticTagMultiSelect {...props} />
+    <SemanticTagMultiSelect {...props} config={config} />
   )
 
 }

@@ -50,11 +50,17 @@
 
     <script type="text/javascript">
       (function() {
+        // Configuration options for the semantic tag widget
+        var widgetConfig = {
+          language: 'en', // Search language (default 'en')
+          limit: 10       // Search result page length (default 20)
+        };
+
         var r = Recogito.init({
           content: 'content', 
       	  widgets: [
             'COMMENT',
-            { widget: recogito.SemanticTags }
+            { widget: recogito.SemanticTags(widgetConfig) }
           ]
         });
 

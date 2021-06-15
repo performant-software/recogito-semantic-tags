@@ -6,8 +6,11 @@ export default class Wikidata {
     this.label = 'Wikidata';
   }
 
-  query(query) {
-    const url = wd.searchEntities(query);
+  query(query, config) {
+    const language = config.language; // Defaults to 'en'
+    const limit = config.limit; // Defaults to 20
+
+    const url = wd.searchEntities(query, language, limit);
     return fetch(url)
       .then(response => response.json())
       .then(data => data.search.map(result => {

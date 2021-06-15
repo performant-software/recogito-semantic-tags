@@ -41,7 +41,7 @@ const SemanticTagMultiSelect = props => {
   useEffect(() => {
     if (isDropdownOpen && query)
       selectedSource
-        .query(query)
+        .query(query, props.config)
         .then(suggestions => {
           setLoadState('LOADED');
           setSuggestions(suggestions);
@@ -98,7 +98,10 @@ const SemanticTagMultiSelect = props => {
         <div className="r6o-semtags-dropdown-container">
           <div className="r6o-semtags-dropdown">
             <div className="r6o-semtags-dropdown-top">
-              <SearchInput value={query} onChange={onQueryChanged} />
+
+              <SearchInput 
+                value={query} 
+                onChange={onQueryChanged} />
 
               <div className="r6o-semtags-sources">
                 <ul>
