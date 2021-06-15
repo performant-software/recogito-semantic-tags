@@ -30,6 +30,9 @@ const SemanticTagMultiSelect = props => {
     setQuery(props.query), [ props.query ]);
   
   useEffect(() => {
+    setLoadState('LOADING');
+    setSuggestions([]);
+
     if (isDropdownOpen && query)
       selectedSource
         .query(query, props.config)
@@ -38,7 +41,7 @@ const SemanticTagMultiSelect = props => {
           setSuggestions(suggestions);
         })
         .catch(() => setLoadState('FAILED'));
-  }, [ query, isDropdownOpen ]);
+  }, [ isDropdownOpen, query, selectedSource ]);
 
   useClickOutside(elem, () => setIsDropdownOpen(false));
 
