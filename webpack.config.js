@@ -63,7 +63,13 @@ module.exports = {
     hot: true,
     host: process.env.HOST || 'localhost',
     port: 3000,
-    publicPath: '/'
+    publicPath: '/',
+    proxy: {
+      '/viaf': {
+          target: 'http://www.viaf.org/viaf/',
+          secure: false
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin ({

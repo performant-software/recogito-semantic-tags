@@ -5,6 +5,8 @@ as a normal React component, similar to a standard multi-select dropdown.
 
 ![Example](screencast.gif)
 
+Live demo [here](https://recogito-semantic-tags.netlify.app/).
+
 ## Usage
 
 ### As a RecogitoJS/Annotorious widget

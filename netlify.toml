@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/viaf/*"
+  to = "https://www.viaf.org/viaf/:splat"
+  status = 200
+  force = true
