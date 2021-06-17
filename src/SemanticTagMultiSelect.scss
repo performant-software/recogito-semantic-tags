@@ -144,7 +144,7 @@
           margin-right:2px;
         }
 
-        label, p {
+        label {
           max-width:100%;
           display:inline-block;
           overflow:hidden;
@@ -155,7 +155,11 @@
           padding: 0;
           margin: 0;
           font-size: 13px;
+          max-width:100%;
+          overflow:hidden;
+          text-overflow:ellipsis;
         }
+        
       }
 
       li:last-child {
