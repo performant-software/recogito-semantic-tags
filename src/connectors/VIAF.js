@@ -1,3 +1,14 @@
+/** 
+ * Mappings between VIAF and our common
+ * icon vocab (place, person, work)
+ */
+const TYPES = {
+  'personal': 'Person',
+  'corporate': 'Group',
+  'geographic': 'Place',
+  'uniformtitlework': 'Work'
+}
+
 export default class VIAF {
 
   constructor() {
@@ -12,10 +23,12 @@ export default class VIAF {
     return fetch('/viaf/AutoSuggest?query=' + query)
       .then(response => response.json())
       .then(data => data.result.map(result => {
-        const { viafid, displayForm } = result;
+        const { viafid, displayForm, nametype } = result;
+        
         return { 
           uri: `https://viaf.org/viaf/${viafid}`,
-          label: displayForm
+          label: displayForm,
+          type: TYPES[nametype]
         }
       }));
   }

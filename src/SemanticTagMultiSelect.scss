@@ -129,11 +129,26 @@
         padding:10px;
         border-bottom:1px solid $lightgrey-border;
         line-height:150%;
+        white-space:nowrap;
+        position:relative;
+
+        .icon {
+          font-size:16px;
+          vertical-align:text-top;
+          margin-right:5px;
+        }
 
         .id {
           color:desaturate($ocean, 20%);
           display:inline-block;
           margin-right:2px;
+        }
+
+        label {
+          max-width:100%;
+          display:inline-block;
+          overflow:hidden;
+          text-overflow:ellipsis;
         }
 
         p {
@@ -145,8 +160,6 @@
 
       li:last-child {
         border-bottom:none;
-
-
       }
 
       li:hover {
