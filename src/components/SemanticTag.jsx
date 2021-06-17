@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Tooltip from 'rc-tooltip';
 import { CloseIcon } from '@recogito/recogito-client-core/src/Icons';
+import { format } from '../connectors';
 
 import './SemanticTag.scss';
 
@@ -21,9 +22,9 @@ const SemanticTag = props => {
     </>
 
   return (
-    <Tooltip placement="top" trigger={ [ "hover" ]} overlay={tooltip}>
+    <Tooltip placement="top" trigger="hover" overlay={tooltip}>
       <li className="r6o-semtag" onClick={toggleDelete}>
-        <label>{props.id}</label>
+        <label>{format(props)}</label>
      
         <CSSTransition in={showDelete} timeout={200} classNames="r6o-semtag-delete">
           <span className="r6o-semtag-delete-wrapper" onClick={props.onDelete}>

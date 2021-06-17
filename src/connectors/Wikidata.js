@@ -14,9 +14,21 @@ export default class Wikidata {
     return fetch(url)
       .then(response => response.json())
       .then(data => data.search.map(result => {
-        const { id, label, description, concepturi } = result;
-        return { id, label, description, uri: concepturi };
+        const { label, description, concepturi } = result;
+        return { 
+          uri: concepturi,
+          label, 
+          description
+        };
       }));
+  }
+
+  format(tag) {
+    return tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);    
+  }
+
+  matches(tag) {
+    return tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g)
   }
 
 }

@@ -89,7 +89,7 @@ const SemanticTagMultiSelect = props => {
                   { props.dataSources.map(source =>
                     <li 
                       key={source.name} 
-                      className={source.name === props.selectedSource.name && 'selected'}
+                      className={source === props.selectedSource && 'selected'}
                       onClick={() => props.onSelectSource(source)}>
 
                       {source.name}
