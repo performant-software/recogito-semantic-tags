@@ -2,11 +2,10 @@
 
 A generic semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js) 
 and [Annotorious](https://github.com/recogito/annotorious). Can also be imported and used
-as a normal React component (similar to a standard multi-select dropdown).
+as a normal React component (similar to a standard multi-select dropdown). Live demo
+[here](https://recogito-semantic-tags.netlify.app/).
 
 ![Example](screencast.gif)
-
-Live demo [here](https://recogito-semantic-tags.netlify.app/).
 
 ## Usage
 
