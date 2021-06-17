@@ -1,0 +1,118 @@
+@import '@recogito/recogito-client-core/themes/default/globals/globals';
+
+li.r6o-semtag {
+  position:relative;
+  display:inline-block;
+  margin:1px 1px 1px 0;
+  cursor:pointer;
+  padding:0;
+  vertical-align:middle;
+  overflow:hidden;
+  font-size:12px;
+  background-color:#fff;
+  border:1px solid $lightgrey-border-darker;
+  position:relative;
+  line-height:180%;
+  @include r6o-noselect();
+  @include rounded-corners(2px);
+  @include box-shadow(0, 0, 4px, 0.1);
+
+  label {
+    padding:2px 8px;
+    display:inline-block;
+    cursor:pointer;
+  }
+
+  .r6o-semtag-delete-wrapper {
+    display:inline-block;
+    padding:2px 0;
+    color:#fff;
+    width:0;
+    height:100%;
+    background-color:$ocean;
+    @include rounded-corners-right(2px);
+
+    .r6o-semtag-delete {
+      padding:2px 6px;
+    }
+
+    svg {
+      vertical-align:sub;
+    }
+
+  }
+
+  .r6o-semtag-delete-enter-active {
+    width:24px;
+    transition:width 200ms;
+  }
+
+  .r6o-semtag-delete-enter-done {
+    width:24px;
+  }
+
+  .r6o-semtag-delete-exit {
+    width:24px;
+  }
+
+  .r6o-semtag-delete-exit-active {
+    width:0;
+    transition:width 200ms;
+  }
+
+}
+
+
+.rc-tooltip {
+   position:absolute;
+   z-index:99999;
+   display:block;
+
+  .rc-tooltip-inner {
+    background-color:#000;
+    padding:6px 10px; 
+    color:#fff;
+    font-size:14px;
+    font-family:Arial, Helvetica, sans-serif;
+    @include rounded-corners(3px);
+    border:none; 
+    line-height:140%; 
+
+    h4 {
+      font-weight:normal;
+      font-size:14px;
+    }
+
+    p.description {
+      font-style:italic;
+      padding-bottom:2px;
+    }
+
+    h4, p {
+      margin:0;
+      padding:0;
+    }
+  }
+
+  .rc-tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom:-5px;
+    border-color: transparent;
+    border-style: solid;
+    margin-left:-6px;
+    border-width:6px 6px 0;
+    border-top-color:#000;
+  }
+
+}
+
+.rc-tooltip-hidden {
+  display: none;
+}
+
+.rc-tooltip-placement-top .rc-tooltip-arrow {
+  left: 50%;
+}
+

@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@recogito/recogito-client-core": "^1.2.3",
+    "rc-tooltip": "^5.1.1",
     "react-debounce-input": "^3.2.3",
     "react-transition-group": "^4.4.2",
     "wikidata-sdk": "^7.13.0"
