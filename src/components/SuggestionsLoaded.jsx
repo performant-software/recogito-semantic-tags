@@ -20,9 +20,23 @@ const SuggestionsLoaded = props => {
 
           <label>
             {suggestion.type ?
-              <span className="icon">{ICONS[suggestion.type]}</span> :
-              <span className="id">{format(suggestion)}</span>
-            } {suggestion.label}
+              <>
+                <span className="icon">{ICONS[suggestion.type]}</span>
+
+                <a 
+                  onClick={evt => evt.stopPropagation()}
+                  href={suggestion.uri}
+                  target="_blank">{suggestion.label}</a>
+              </> :
+
+              <>
+                <a 
+                  className="id" 
+                  onClick={evt => evt.stopPropagation()}
+                  href={suggestion.uri} 
+                  target="_blank">{format(suggestion)}</a> {suggestion.label}
+              </>
+            } 
           </label>
           
           <p className="description">{suggestion.description}</p>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Tooltip from 'rc-tooltip';
 import { CloseIcon } from '@recogito/recogito-client-core/src/Icons';
+import { BiLinkExternal } from 'react-icons/bi';
 import { format } from '../connectors';
 
 import './SemanticTag.scss';
@@ -19,6 +20,12 @@ const SemanticTag = props => {
     <>
       <h4>{props.label}</h4>
       <p className="description">{props.description}</p>
+      <a 
+        onClick={evt => evt.stopPropagation()}
+        href={props.uri}
+        target="_blank">
+        <BiLinkExternal />
+      </a>
     </>
 
   return (

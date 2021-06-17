@@ -70,13 +70,20 @@ li.r6o-semtag {
 
   .rc-tooltip-inner {
     background-color:#000;
-    padding:6px 10px; 
+    padding:6px 30px 6px 10px; 
     color:#fff;
     font-size:14px;
     font-family:Arial, Helvetica, sans-serif;
     @include rounded-corners(3px);
     border:none; 
     line-height:140%; 
+
+    a {
+      color:#fff;
+      position:absolute;
+      top:8px;
+      right:8px;
+    }
 
     h4 {
       font-weight:normal;
