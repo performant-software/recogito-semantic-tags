@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SemanticTagMultiSelect from "./SemanticTagMultiSelect";
-import { VIAF, Wikidata } from './connectors';
+import SemanticTagMultiSelect from './SemanticTagMultiSelect';
+import { getBuiltInSource } from './connectors';
 
 /**
  * W3C annotation body -> generic 'tag' object
@@ -24,13 +24,9 @@ const bodyToTag = body => ({
   description: tag.description,
 });
 
-/**
- * Just a hack - needs to be pulled from an external config later
- */ 
- const SOURCES = [
-  new Wikidata(),
-  new VIAF()
-];
+// Shorthand
+const isString = val =>
+  typeof val === 'string' || val instanceof String;
 
 /**
  * This wrapper allows us to use the SemanticTagMultiSelect 
@@ -40,7 +36,11 @@ const bodyToTag = body => ({
  */
 const SemanticTagPlugin = config => props => {
 
-  const [ selectedSource, setSelectedSource ] = useState(SOURCES[0]); 
+  const sources = config.dataSources ? 
+    config.dataSources.map(s => isString(s) ? getBuiltInSource(s) : s) : 
+    [ getBuiltInSource('wikidata'), getBuiltInSource('viaf') ]; // defaults
+
+  const [ selectedSource, setSelectedSource ] = useState(sources[0]); 
 
   const tagBodies = props.annotation ? 
     props.annotation.bodies.filter(b => b.purpose === 'classifying') : [];
@@ -65,7 +65,7 @@ const SemanticTagPlugin = config => props => {
 
   return (
     <SemanticTagMultiSelect 
-      dataSources={SOURCES}
+      dataSources={sources}
       selectedSource={selectedSource}
       tags={tagBodies.map(bodyToTag)}
       query={presetQuery}

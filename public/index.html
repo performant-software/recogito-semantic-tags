@@ -52,8 +52,15 @@
       (function() {
         // Configuration options for the semantic tag widget
         var widgetConfig = {
+          // List of data sources, strings for built-in connectors.
+          // Could support functions in the future, for more
+          // customization
+          dataSources: [
+            'Wikidata',
+            'VIAF'
+          ],
           language: 'en', // Search language (default 'en')
-          limit: 10       // Search result page length (default 20)
+          limit: 10,      // Search result page length (default 20)
         };
 
         var r = Recogito.init({

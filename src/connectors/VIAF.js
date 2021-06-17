@@ -1,7 +1,7 @@
 export default class VIAF {
 
   constructor() {
-    this.label = 'VIAF';
+    this.name = 'VIAF';
   }
 
   query(query) {

@@ -3,7 +3,7 @@ import wd from 'wikidata-sdk';
 export default class Wikidata {
 
   constructor() {
-    this.label = 'Wikidata';
+    this.name = 'Wikidata';
   }
 
   query(query, config) {

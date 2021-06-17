@@ -28,6 +28,10 @@ details). Add the plugin as a widget:
       window.onload = function() {
         // Plugin configuration options
         var config = {
+          dataSources: [  // List of datasources, string (for built-in)
+            'Wikidata',   // or JS function. Defaults to Wikidata and
+            'VIAF'        // VIAF
+          ],
           language: 'en', // Search language (default 'en')
           limit: 10       // Search result page length (default 20)
         };
