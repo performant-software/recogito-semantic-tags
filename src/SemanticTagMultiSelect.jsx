@@ -19,8 +19,6 @@ const SemanticTagMultiSelect = props => {
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
 
   const [ query, setQuery ] = useState(props.query);
-  
-  const [ selectedSource, setSelectedSource ] = useState(props.dataSources[0]);
 
   const [ loadState, setLoadState ] = useState('LOADING');
 
@@ -34,14 +32,14 @@ const SemanticTagMultiSelect = props => {
     setSuggestions([]);
 
     if (isDropdownOpen && query)
-      selectedSource
+      props.selectedSource
         .query(query, props.config)
         .then(suggestions => {
           setLoadState('LOADED');
           setSuggestions(suggestions);
         })
         .catch(() => setLoadState('FAILED'));
-  }, [ isDropdownOpen, query, selectedSource ]);
+  }, [ isDropdownOpen, query, props.selectedSource ]);
 
   useClickOutside(elem, () => setIsDropdownOpen(false));
 
@@ -91,8 +89,8 @@ const SemanticTagMultiSelect = props => {
                   { props.dataSources.map(source =>
                     <li 
                       key={source.label} 
-                      className={source === selectedSource && 'selected'}
-                      onClick={() => setSelectedSource(source)}>
+                      className={source === props.selectedSource && 'selected'}
+                      onClick={() => props.onSelectSource(source)}>
 
                       {source.label}
 

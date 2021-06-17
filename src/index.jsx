@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SemanticTagMultiSelect from "./SemanticTagMultiSelect";
 import { VIAF, Wikidata } from './connectors';
 
@@ -40,6 +40,8 @@ const bodyToTag = body => ({
  */
 const SemanticTagPlugin = config => props => {
 
+  const [ selectedSource, setSelectedSource ] = useState(SOURCES[0]); 
+
   const tagBodies = props.annotation ? 
     props.annotation.bodies.filter(b => b.purpose === 'classifying') : [];
 
@@ -64,10 +66,12 @@ const SemanticTagPlugin = config => props => {
   return (
     <SemanticTagMultiSelect 
       dataSources={SOURCES}
+      selectedSource={selectedSource}
       tags={tagBodies.map(bodyToTag)}
       query={presetQuery}
       onAddTag={onUpsertTag}
       onDeleteTag={onDeleteTag}
+      onSelectSource={setSelectedSource}
       config={config} />
   )
 
