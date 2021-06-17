@@ -54,7 +54,7 @@ details). Add the plugin as a widget:
 
 ### As a generic React component
 
-When using the in a (non-RecogitoJS) React project, you need to import
+When using in a (non-RecogitoJS) React project, you need to import
 the `SemanticTagMultiSelect` component directly. (The RecogitoJS plugin
 is a small wrapper class which itself uses `SemanticTagMultiSelect 
 internally.)
