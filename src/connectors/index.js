@@ -1,9 +1,11 @@
 import VIAF from './VIAF';
 import Wikidata from './Wikidata';
+import CatalogueBNF from './CatalogueBNF';
 
 const BUILTIN_CONNECTORS = {
   'viaf': new VIAF(),
-  'wikidata': new Wikidata()
+  'wikidata': new Wikidata(),
+  'catalogue.bnf': new CatalogueBNF()
 }
 
 export const getBuiltInSource = name => 

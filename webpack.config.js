@@ -66,9 +66,14 @@ module.exports = {
     publicPath: '/',
     proxy: {
       '/viaf': {
-          target: 'http://www.viaf.org/',
-          secure: false,
-          changeOrigin: true
+        target: 'http://www.viaf.org/',
+        secure: false,
+        changeOrigin: true
+      },
+      '/SRU': {
+        target: 'https://catalogue.bnf.fr/api/',
+        secure: false,
+        changeOrigin: true
       }
     }
   },
