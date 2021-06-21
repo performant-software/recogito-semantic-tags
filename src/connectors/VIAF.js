@@ -22,15 +22,18 @@ export default class VIAF {
   query(query) {
     return fetch('/viaf/AutoSuggest?query=' + query)
       .then(response => response.json())
-      .then(data => data.result.map(result => {
-        const { viafid, displayForm, nametype } = result;
-        
-        return { 
-          uri: `https://viaf.org/viaf/${viafid}`,
-          label: displayForm,
-          type: TYPES[nametype]
-        }
-      }));
+      .then(data => {
+        const result = data.result || []; // VIAF returns 'null' for 0 results!
+        return result.map(result => {
+          const { viafid, displayForm, nametype } = result;
+          
+          return { 
+            uri: `https://viaf.org/viaf/${viafid}`,
+            label: displayForm,
+            type: TYPES[nametype]
+          }
+        })
+      });
   }
 
   /**

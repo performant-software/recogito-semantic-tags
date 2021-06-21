@@ -2,6 +2,8 @@ import React from 'react';
 import { FiBookOpen, BiMap, FiMapPin, FiUser, FiUsers } from 'react-icons/fi';
 import { format } from '../connectors';
 
+import './SuggestionsLoaded.scss';
+
 const ICONS = {
   Place:  <FiMapPin />,
   Person: <FiUser />,
