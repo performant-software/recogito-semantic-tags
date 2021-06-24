@@ -19,8 +19,9 @@ const getProp = (record, prop) =>
  */
 export default class CatalogueBNF {
 
-  constructor() {
-    this.name = 'Catalogue BNF';
+  constructor(opt_config) {
+    this.name = opt_config?.name || 'Catalogue BNF';
+    this.config = opt_config;
   }
 
   query(query, config) {
@@ -52,12 +53,10 @@ export default class CatalogueBNF {
     });
   }
 
-  format(tag) {
-    return tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);
-  }
-
-  matches(tag) {
-    return tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g)
-  }
-
 }
+
+CatalogueBNF.matches = tag =>
+  tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g);
+
+CatalogueBNF.format = tag =>
+  tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);

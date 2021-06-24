@@ -2,12 +2,13 @@ import wd from 'wikidata-sdk';
 
 export default class Wikidata {
 
-  constructor() {
-    this.name = 'Wikidata';
+  constructor(opt_config) {
+    this.name = opt_config?.name || 'Wikidata';
+    this.config = opt_config;
   }
 
-  query(query, config) {
-    const { language, limit } = config; 
+  query(query, globalConfig) {
+    const { language, limit } = globalConfig; 
 
     const url = wd.searchEntities(query, language, limit);
 
@@ -23,12 +24,10 @@ export default class Wikidata {
       }));
   }
 
-  format(tag) {
-    return tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);    
-  }
-
-  matches(tag) {
-    return tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g)
-  }
-
 }
+
+Wikidata.matches = tag =>
+  tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g);
+
+Wikidata.format = tag =>
+  tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);

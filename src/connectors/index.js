@@ -3,13 +3,31 @@ import Wikidata from './Wikidata';
 import CatalogueBNF from './CatalogueBNF';
 
 const BUILTIN_CONNECTORS = {
-  'viaf': new VIAF(),
-  'wikidata': new Wikidata(),
-  'catalogue.bnf': new CatalogueBNF()
+  'viaf': VIAF,
+  'wikidata': Wikidata,
+  'catalogue.bnf': CatalogueBNF
 }
 
-export const getBuiltInSource = name => 
-  BUILTIN_CONNECTORS[name.toLowerCase()];
+export const instantiateSource = nameOrObject => { 
+
+  const instantiate = (source, config) => {
+    // Source can be a function or a string
+    if (source === 'function' || source instanceof Function) {
+      return source(config);
+    } else {
+      return new BUILTIN_CONNECTORS[source.toLowerCase()](config);
+    }
+  }
+
+  if (nameOrObject.source) {
+    const { source, ...config } = nameOrObject;
+    return instantiate(source, config);
+  } else {
+    // No object with args -> instantiate arg directly
+    return instantiate(nameOrObject);
+  }
+  
+}
 
 /** 
  * Finds the source responsible for the URI and formats

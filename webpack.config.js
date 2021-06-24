@@ -79,7 +79,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin ({
-      inject: 'head',
       template: resolveAppPath('public/index.html')
     })
   ]

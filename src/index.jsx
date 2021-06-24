@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SemanticTagMultiSelect from './SemanticTagMultiSelect';
-import { getBuiltInSource } from './connectors';
+import { instantiateSource } from './connectors';
 
 /**
  * W3C annotation body -> generic 'tag' object
@@ -23,10 +23,6 @@ const bodyToTag = body => ({
   label: tag.label,
   description: tag.description,
 });
-
-// Shorthand
-const isString = val =>
-  typeof val === 'string' || val instanceof String;
 
 const APP_STORAGE_KEY = 'r6o-semtags-selected-source';
 
@@ -53,9 +49,11 @@ const restoreSelectedSource = sources => {
  */
 const SemanticTagPlugin = config => props => {
 
+  console.log('instantiating plugin', config);
+
   const sources = config.dataSources ? 
-    config.dataSources.map(s => isString(s) ? getBuiltInSource(s) : s) : 
-    [ getBuiltInSource('wikidata'), getBuiltInSource('viaf') ]; // defaults
+    config.dataSources.map(instantiateSource) : 
+    [ instantiateSource('wikidata'), instantiateSource('viaf') ]; // defaults
 
   // Use selection persisted in localStorage, if able
   const [ selectedSource, setSelectedSource ] = useState(restoreSelectedSource(sources)); 

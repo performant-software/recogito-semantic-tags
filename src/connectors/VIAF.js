@@ -11,8 +11,9 @@ const TYPES = {
 
 export default class VIAF {
 
-  constructor() {
-    this.name = 'VIAF';
+  constructor(opt_config) {
+    this.name = opt_config?.name || 'VIAF';
+    this.config = opt_config;
   }
 
   /**
@@ -36,19 +37,17 @@ export default class VIAF {
       });
   }
 
-  /**
-   * Renders a screen display form for the given URI
-   */
-  format(tag) {
-    return 'viaf:' + tag.uri.substring(tag.uri.indexOf('/viaf/') + 6);
-  }
-
-  /**
-   * Returns true if this source matches the tag (i.e. if 
-   * this source is the source of the given tag)s
-   */
-  matches(tag) {
-    return tag.uri.match(/^https?:\/\/viaf.org\/viaf/g)
-  }
-
 }
+
+/**
+ * Returns true if this source matches the tag (i.e. if 
+ * this source is the source of the given tag)s
+ */
+VIAF.matches = tag =>
+  tag.uri.match(/^https?:\/\/viaf.org\/viaf/g);
+
+/**
+ * Renders a screen display form for the given URI
+ */
+VIAF.format = tag =>
+  'viaf:' + tag.uri.substring(tag.uri.indexOf('/viaf/') + 6);
