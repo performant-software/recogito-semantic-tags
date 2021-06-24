@@ -49,8 +49,6 @@ const restoreSelectedSource = sources => {
  */
 const SemanticTagPlugin = config => props => {
 
-  console.log('instantiating plugin', config);
-
   const sources = config.dataSources ? 
     config.dataSources.map(instantiateSource) : 
     [ instantiateSource('wikidata'), instantiateSource('viaf') ]; // defaults

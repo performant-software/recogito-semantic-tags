@@ -16,7 +16,7 @@ const SearchInput = props => {
       <DebounceInput
         inputRef={inputRef}
         value={props.value}
-        debounceTimeout={300}
+        debounceTimeout={500}
         onChange={props.onChange} />
       
       <div className="icon">
