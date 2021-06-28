@@ -1,8 +1,10 @@
 import VIAF from './VIAF';
 import Wikidata from './Wikidata';
 import CatalogueBNF from './CatalogueBNF';
+import JISCLibraryHub from './JISCLibraryHub';
 
 const BUILTIN_CONNECTORS = {
+  'jisc': JISCLibraryHub,
   'viaf': VIAF,
   'wikidata': Wikidata,
   'catalogue.bnf': CatalogueBNF

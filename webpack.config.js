@@ -70,6 +70,13 @@ module.exports = {
         secure: false,
         changeOrigin: true
       },
+      '/jisc': {
+        target: 'https://discover.libraryhub.jisc.ac.uk/',
+        pathRewrite: { '^/jisc' : '' },
+        secure: true,
+        changeOrigin: true
+      },
+
       '/SRU': {
         target: 'https://catalogue.bnf.fr/api/',
         secure: false,

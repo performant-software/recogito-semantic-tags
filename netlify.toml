@@ -3,3 +3,9 @@
   to = "https://www.viaf.org/viaf/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/jisc/*"
+  to = "https://discover.libraryhub.jisc.ac.uk/:splat"
+  status = 200
+  force = true
