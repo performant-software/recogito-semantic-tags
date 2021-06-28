@@ -2,12 +2,14 @@ import VIAF from './VIAF';
 import Wikidata from './Wikidata';
 import CatalogueBNF from './CatalogueBNF';
 import JISCLibraryHub from './JISCLibraryHub';
+import DPLA from './DPLA';
 
 const BUILTIN_CONNECTORS = {
   'jisc': JISCLibraryHub,
   'viaf': VIAF,
   'wikidata': Wikidata,
-  'catalogue.bnf': CatalogueBNF
+  'catalogue.bnf': CatalogueBNF,
+  'dpla': DPLA
 }
 
 export const instantiateSource = nameOrObject => { 
