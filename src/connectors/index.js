@@ -1,15 +1,15 @@
+import BNF from './BNF';
+import DPLA from './DPLA';
+import JISCLibraryHub from './JISCLibraryHub';
 import VIAF from './VIAF';
 import Wikidata from './Wikidata';
-import CatalogueBNF from './CatalogueBNF';
-import JISCLibraryHub from './JISCLibraryHub';
-import DPLA from './DPLA';
 
 const BUILTIN_CONNECTORS = {
+  'bnf': BNF,
+  'dpla': DPLA,
   'jisc': JISCLibraryHub,
   'viaf': VIAF,
-  'wikidata': Wikidata,
-  'catalogue.bnf': CatalogueBNF,
-  'dpla': DPLA
+  'wikidata': Wikidata
 }
 
 export const instantiateSource = nameOrObject => { 

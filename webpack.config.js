@@ -76,9 +76,9 @@ module.exports = {
         secure: true,
         changeOrigin: true
       },
-
-      '/SRU': {
-        target: 'https://catalogue.bnf.fr/api/',
+      '/bnf': {
+        target: 'https://catalogue.bnf.fr/api/SRU',
+        pathRewrite: { '^/bnf' : '' },
         secure: false,
         changeOrigin: true
       }

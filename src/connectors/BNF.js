@@ -1,7 +1,7 @@
 import { parseString } from 'browser-xml2js';
 
 const buildURL = query => {
-  return '/SRU?' + [
+  return '/bnf?' + [
     'operation=searchRetrieve',
     'startRecord=1',
     'recordSchema=dublincore',
@@ -17,10 +17,10 @@ const getProp = (record, prop) =>
 /**
  * Just an experiment for now...
  */
-export default class CatalogueBNF {
+export default class BNF {
 
   constructor(opt_config) {
-    this.name = opt_config?.name || 'Catalogue BNF';
+    this.name = opt_config?.name || 'BNF';
     this.config = opt_config;
   }
 
@@ -55,8 +55,8 @@ export default class CatalogueBNF {
 
 }
 
-CatalogueBNF.matches = tag =>
+BNF.matches = tag =>
   tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g);
 
-CatalogueBNF.format = tag =>
+BNF.format = tag =>
   tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);

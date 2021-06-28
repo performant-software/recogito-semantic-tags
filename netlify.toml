@@ -9,3 +9,9 @@
   to = "https://discover.libraryhub.jisc.ac.uk/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/bnf/*"
+  to = "https://catalogue.bnf.fr/api/SRU:splat"
+  status = 200
+  force = true
