@@ -85,6 +85,7 @@ const SemanticTagMultiSelect = props => {
 
               <SearchInput 
                 value={query} 
+                lang={props.config.language}
                 onChange={onQueryChanged} />
 
               <div className="r6o-semtags-sources">

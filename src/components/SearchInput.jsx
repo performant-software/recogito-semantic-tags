@@ -3,6 +3,8 @@ import { DebounceInput } from 'react-debounce-input';
 
 import { SearchIcon } from '../Icons';
 
+import './SearchInput.scss';
+
 const SearchInput = props => {
 
   const inputRef = useRef();
@@ -19,7 +21,10 @@ const SearchInput = props => {
         debounceTimeout={500}
         onChange={props.onChange} />
       
-      <div className="icon">
+      <div className="icons">
+        <div className="lang">
+          <label>{props.lang}</label>
+        </div>
         <SearchIcon width={18} />
       </div>
     </div>
