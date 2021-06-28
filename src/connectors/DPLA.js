@@ -16,36 +16,16 @@ export default class DPLA {
         const uri = doc.isShownAt;
         const label = doc.sourceResource.title[0];
         const description = doc.sourceResource.creator[0];
-
         return {
           uri, label, description
         }
-        /*
-        const result = data.result || []; // VIAF returns 'null' for 0 results!
-        return result.map(result => {
-          const { viafid, displayForm, nametype } = result;
-          
-          return { 
-            uri: `https://viaf.org/viaf/${viafid}`,
-            label: displayForm,
-            type: TYPES[nametype]
-          }
-        })
-        */
       }));
   }
 
 }
 
-/**
- * Returns true if this source matches the tag (i.e. if 
- * this source is the source of the given tag)s
- */
-DPLA.matches = tag =>
-  tag.uri.match(/^https?:\/\/viaf.org\/viaf/g);
+/** DPLA provides original URIs - need to think about proper formatting **/
+DPLA.matches = tag => false;
 
-/**
- * Renders a screen display form for the given URI
- */
-DPLA.format = tag =>
-  'viaf:' + tag.uri.substring(tag.uri.indexOf('/viaf/') + 6);
+/** DPLA provides original URIs - need to think about proper formatting **/
+DPLA.format = tag => tag.uri;
