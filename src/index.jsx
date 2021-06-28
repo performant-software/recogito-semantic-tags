@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SemanticTagMultiSelect from './SemanticTagMultiSelect';
 import { instantiateSource } from './connectors';
+import { BiConfused } from 'react-icons/bi';
 
 /**
  * W3C annotation body -> generic 'tag' object
@@ -41,6 +42,15 @@ const restoreSelectedSource = sources => {
   }
 }
 
+const setLanguage = config => {
+  if (!config.language) {
+    config.language = 'en'; // default
+  } else if (config.language === 'auto') {
+    const l = window.navigator.userLanguage || window.navigator.language;
+    config.language = l.split('-')[0].toLowerCase()
+  }
+}
+
 /**
  * This wrapper allows us to use the SemanticTagMultiSelect 
  * as a RecogitoJS/Annotorious plugin, while SemanticTagMultiSelect
@@ -48,6 +58,8 @@ const restoreSelectedSource = sources => {
  * no knowledge of WebAnnotations etc.)
  */
 const SemanticTagPlugin = config => props => {
+
+  setLanguage(config);
 
   const sources = config.dataSources ? 
     config.dataSources.map(instantiateSource) : 
