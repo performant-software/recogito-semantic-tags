@@ -5,9 +5,10 @@ import { RDFIcon } from './Icons';
 import {
   SearchInput,
   SemanticTag,
+  SourcesList,
   SuggestionsLoading,
   SuggestionsLoaded,
-  SuggestionsFailed
+  SuggestionsFailed,
 } from './components';
 
 import './SemanticTagMultiSelect.scss';
@@ -88,20 +89,10 @@ const SemanticTagMultiSelect = props => {
                 lang={props.config.language}
                 onChange={onQueryChanged} />
 
-              <div className="r6o-semtags-sources">
-                <ul>
-                  { props.dataSources.map(source =>
-                    <li 
-                      key={source.name} 
-                      className={source.name === props.selectedSource.name && 'selected'}
-                      onClick={() => { if (loadState !== 'LOADING') props.onSelectSource(source) }}>
-
-                      {source.name}
-
-                    </li>
-                  )}
-                </ul>
-              </div>
+              <SourcesList
+                dataSources={props.dataSources}
+                selectedSource={props.selectedSource}
+                onSelectSource={props.onSelectSource} />
             </div>
 
             <div className="r6o-semtags-dropdown-bottom">

@@ -68,26 +68,6 @@
               box-shadow:0 4px 4px rgba(0, 0, 0, .15);
     }
 
-    .r6o-semtags-sources {
-      border-bottom:1px solid $lightgrey-border-darker;
-      
-      ul {
-        padding-left:8px;
-        padding-right:8px;
-      }
-
-      li {
-        padding:5px 8px 1px 8px;
-        display:inline-block;
-        cursor:pointer;
-      }
-
-      li.selected {
-        border-bottom:4px solid $ocean;
-      }
-
-    }
-
   }
 
 }

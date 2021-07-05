@@ -1,0 +1,56 @@
+@import '@recogito/recogito-client-core/themes/default/globals/globals';
+
+.r6o-widget.r6o-semtags .r6o-semtags-sources {
+  border-bottom:1px solid $lightgrey-border-darker;
+  position:relative;
+  
+  .sources-list {
+    flex:0;
+    padding-left:4px;
+    padding-right:50px;
+    position:relative;
+    @include r6o-noselect();
+
+    ul {
+      white-space:nowrap;
+      overflow-x:scroll;
+    }
+
+    ul::-webkit-scrollbar {
+      height: 0px;
+      background: transparent;
+    }
+
+    li {
+      padding:5px 16px 1px 16px;
+      display:inline-block;
+      cursor:pointer;
+    }
+
+    li.selected {
+      border-bottom:4px solid $ocean;
+    }
+
+  }
+
+  .slide-arrows {
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    font-size:21px;
+    color:rgba(0,0,0,0.4);
+    background-color:#fff;
+    display:flex;
+    align-items:center;
+
+    svg {
+      cursor:pointer;
+    }
+
+    svg:hover {
+      color:#333;
+    }
+  }
+
+}

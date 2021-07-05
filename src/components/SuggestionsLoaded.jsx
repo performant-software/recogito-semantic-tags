@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiBookOpen, BiMap, FiMapPin, FiUser, FiUsers } from 'react-icons/fi';
+import { FiBookOpen, FiMapPin, FiUser, FiUsers } from 'react-icons/fi';
 import { format } from '../connectors';
 
 import './SuggestionsLoaded.scss';
