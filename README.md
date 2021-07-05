@@ -14,11 +14,11 @@ multi-select dropdown. [Read more on the Wiki](https://github.com/performant-sof
 
 The widget includes connectors to the following data sources:
 
-- Wikidata
-- VIAF
-- SRU API endpoint of the Bibliothèque nationale de France
-- API endpoint of the JISC LibraryHub Discover service
-- API endpoint of the Digital Public Library of America
+- [Wikidata](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#wikidata)
+- [VIAF](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#viaf)
+- [SRU API endpoint of the Bibliothèque nationale de France](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#bnf)
+- [API endpoint of the JISC LibraryHub Discover service](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#jisc)
+- [API endpoint of the Digital Public Library of America](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#dpla)
 
 To learn how you can add your own connectors, [see the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Writing-your-own-Connectors)
 
