@@ -14,6 +14,12 @@
     ul {
       white-space:nowrap;
       overflow-x:scroll;
+
+      /* FF */
+      scrollbar-width:none;
+      
+      /*IE10+*/
+      -ms-overflow-style: -ms-autohiding-scrollbar; 
     }
 
     ul::-webkit-scrollbar {
