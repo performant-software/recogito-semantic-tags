@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SemanticTagMultiSelect from './SemanticTagMultiSelect';
 import { instantiateSource } from './connectors';
-import { BiConfused } from 'react-icons/bi';
 
 /**
  * W3C annotation body -> generic 'tag' object
