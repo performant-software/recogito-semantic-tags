@@ -42,7 +42,7 @@ export default class BNF {
               const mapped = records.map(record => {
                 return {
                   uri: getProp(record, 'dc:identifier'),
-                  label: getProp(record, 'dc:title'),
+                  label: JSON.stringify(getProp(record, 'dc:title')),
                   description: getProp(record, 'dc:description'),
                   type: 'Work'
                 }

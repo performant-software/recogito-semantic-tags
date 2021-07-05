@@ -94,7 +94,7 @@ const SemanticTagMultiSelect = props => {
                     <li 
                       key={source.name} 
                       className={source.name === props.selectedSource.name && 'selected'}
-                      onClick={() => props.onSelectSource(source)}>
+                      onClick={() => { if (loadState !== 'LOADING') props.onSelectSource(source) }}>
 
                       {source.name}
 
