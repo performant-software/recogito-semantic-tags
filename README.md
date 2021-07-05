@@ -1,19 +1,31 @@
 # Recogito Semantic Tags Widget
 
-A generic semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js) 
-and [Annotorious](https://github.com/recogito/annotorious). Can also be imported and used
-as a normal React component (similar to a standard multi-select dropdown). Live demo
-[here](https://recogito-semantic-tags.netlify.app/).
+A semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js) 
+and [Annotorious](https://github.com/recogito/annotorious). Live demo
+[here](https://recogito-semantic-tags.netlify.app/). Detailed documentation is 
+[on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki).
+
+The widget can also be imported and used as a normal React component, similar to a standard 
+multi-select dropdown. [Read more on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-as-a-React-Component)
 
 ![Example](screencast.gif)
 
-## Usage
+## Datasources
 
-### As a RecogitoJS/Annotorious widget
+The widget includes connectors to the following data sources:
 
-Include RecogitoJS and the plugin script in the head of your page. Initialize RecogitoJS
-normally (see [API docs](https://github.com/recogito/recogito-js/wiki/API-Reference) for
-details). Add the plugin as a widget:
+- Wikidata
+- VIAF
+- SRU API endpoint of the Bibliothèque nationale de France
+- API endpoint of the JISC LibraryHub Discover service
+- API endpoint of the Digital Public Library of America
+
+To learn how you can add your own connectors, [see the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Writing-your-own-Connectors)
+
+## Use in RecogitoJS
+
+Include RecogitoJS/Annotorious and the plugin script in the head of your page. Initialize RecogitoJS
+normally, and add the plugin as a widget.
 
 ```html
 <html>
@@ -56,81 +68,5 @@ details). Add the plugin as a widget:
 </html>
 ```
 
-### As a generic React component
-
-When using in a (non-RecogitoJS) React project, you need to import
-the `SemanticTagMultiSelect` component directly. (The RecogitoJS plugin
-is a small wrapper class which itself uses `SemanticTagMultiSelect 
-internally.)
-
-> __NOTE__ this example assumes the package was published to the NPM registry,
-> which has not happened. Should we do this? Under who's account? Namespaced
-> or not?
-
-```jsx
-import SemanticTagMultiSelect from '@recogito/recogito-semantic-tags';
-
-// ...
-
-// Tags already added to the component 
-const tags = [{
-  uri: 'https://www.wikidata.org/wiki/Q47231',
-  label: 'Odysseus',
-  description: 'legendary Greek king of Ithaca'
-}]
-
-// A query string to pre-populate the search field (optional)
-const query = 'Ulysses';
-
-const onAddTag = tag => {
-  // Callback when user selects a tag from the suggestions
-}
-
-const onDeleteTag = tag => {
-  // Callback when user deletes a tag from the list
-}
-
-const config = {
-  language: 'en',
-  limit: 10 
-}
-
-<SemanticTagMultiSelect 
-  dataSources={SOURCES}
-  tags={tags}
-  query={query}
-  onAddTag={onAddTag}
-  onDeleteTag={onDeleteTag}
-  config={config} />
-```
-
-## Built-in Datasources
-
-### Wikidata
-
-The built-in Wikidata connector queries the [wbsearchentities](https://www.wikidata.org/w/api.php?action=help&modules=wbsearchentities)
-endpoint, which returns the following entity properties:
-
-- Wikidata QID
-- Wikidata entity URI
-- Label
-- Description
-
-The query makes use of the `language` and `limit` config parameters.
-
-### VIAF
-
-The build-in VIAF connector queries the [VIAF AutoSuggest](https://platform.worldcat.org/api-explorer/apis/VIAF/AuthorityCluster/AutoSuggest)
-endpoint, which returns the following entity properties:
-
-- VIAF ID
-- displayForm (Label)
-- nameType (e.g. 'personal', 'geographic', 'uniformtitlework', etc.)
-- Identifiers in other systems (DNB, BNF, LC, etc.)
-
-## Development
-
-```sh
-$ npm install
-$ npm start
-```
+For more details on how to configure the plugin and data sources, see the 
+[Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-with-RecogitoJS-or-Annotorious).
