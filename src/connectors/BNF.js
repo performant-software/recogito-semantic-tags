@@ -1,12 +1,12 @@
 import { parseString } from 'browser-xml2js';
 
-const buildURL = query => {
+const buildURL = (query, limit) => {
   return '/bnf?' + [
     'operation=searchRetrieve',
     'startRecord=1',
     'recordSchema=dublincore',
     'version=1.2',
-    'maximumRecords=10',
+    `maximumRecords=${limit}`,
     `query=bib.anywhere+all+"${query}"`
   ].join('&')
 }
@@ -25,8 +25,10 @@ export default class BNF {
   }
 
   query(query, config) {
+    const limit = config.limit || 20;
+
     return new Promise((resolve, reject) => {
-      fetch(buildURL(query))
+      fetch(buildURL(query, limit))
         .then(response => response.text())
         .then(xml => {
           parseString(xml, (error, result) => {
