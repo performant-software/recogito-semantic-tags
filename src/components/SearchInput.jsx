@@ -27,14 +27,16 @@ const SearchInput = props => {
       <div className="icons">
         <div className="lang">
           {props.languages.length > 1 ?
-            <select onChange={onChangeLanguage}>
-              {props.languages.map(lang => 
-                <option
-                  key={lang}
-                  value={lang}
-                  selected={lang === props.currentLanguage}>{lang}</option>
-              )}
-            </select> :
+            <div className="select-wrapper">
+              <select onChange={onChangeLanguage}>
+                {props.languages.map(lang => 
+                  <option
+                    key={lang}
+                    value={lang}
+                    selected={lang === props.currentLanguage}>{lang}</option>
+                )}
+              </select>
+            </div> :
             <label>{props.currentLanguage}</label>
           }
         </div>

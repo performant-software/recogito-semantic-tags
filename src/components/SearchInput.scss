@@ -22,16 +22,36 @@
       align-items:center;
       margin-right:5px;
 
-      label {
+      label, .select-wrapper {
         display:inline-block;
-        width:14px;
-        height:14px;
         line-height:14px;
         font-size:12px;
         background-color:#c2c2c2;
         color:#fff;
-        padding:4px;
         border-radius:2px;
+      }
+
+      label {
+        width:14px;
+        height:14px;
+        padding:4px;
+      }
+
+      .select-wrapper {
+        color:#fff;
+        padding:4px 2px;
+
+        select {
+          color:#fff;
+          border:none;
+          outline:none;
+          padding-right:2px;
+        }
+
+        option {
+          color:#333;
+        }
+
       }
 
     }
