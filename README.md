@@ -40,25 +40,36 @@ normally, and add the plugin as a widget.
       window.onload = function() {
         // Plugin configuration options
         var config = {
-          dataSources: [  // List of datasources, string (for built-in)
-            'Wikidata',   // or JS function. Defaults to Wikidata and
-            'VIAF'        // VIAF
+
+          // List of data sources - string for built-in, objects
+          // for custom or configurable sources (see Wiki for details)
+          dataSources: [  
+            'Wikidata',   
+            'VIAF'
           ],
-          language: 'en', // Search language (default 'en')
-          limit: 10       // Search result page length (default 20)
+
+          // Pre-set search language (defaults 'en'), set to
+          // 'auto' to detect browser language
+          language: 'en', 
+
+          // Optional additional search languages the 
+          // user can switch to
+          availableLanguages: [
+            'en', 'de', 'es'
+          ]
+          
+          // Search result page length (default 20)
+          limit: 10
         };
 
         var r = Recogito.init({
-          content: 'content', // Id of the DOM node to annotate
+          content: 'content',
       	  widgets: [
-            'COMMENT', // Built-in comment widget
-            recogito.SemanticTags(widgetConfig)  // Plugin
+            'COMMENT',
+            recogito.SemanticTags(widgetConfig)
           ]
         });
 
-        // Listen to the lifecycle events to store, 
-        // update, delete annotations, Full docs at:
-        // https://github.com/recogito/recogito-js/wiki/API-Reference
         r.on('createAnnotation', function(a) {
           console.log('created', a);
         });
