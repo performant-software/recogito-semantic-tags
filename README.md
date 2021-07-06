@@ -1,18 +1,18 @@
 # Recogito Semantic Tags Widget
 
 A semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js) 
-and [Annotorious](https://github.com/recogito/annotorious). Live demo
+and [Annotorious](https://github.com/recogito/annotorious). Live demo available
 [here](https://recogito-semantic-tags.netlify.app/). Detailed documentation is 
 [on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki).
 
 The widget can also be imported and used as a normal React component, similar to a standard 
-multi-select dropdown. [Read more on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-as-a-React-Component)
+multi-select dropdown. [Read more on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-as-a-React-Component).
 
 ![Example](screencast.gif)
 
 ## Datasources
 
-The widget includes connectors to the following data sources:
+The widget includes built-in connectors to the following data sources:
 
 - [Wikidata](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#wikidata)
 - [VIAF](https://github.com/performant-software/recogito-semantic-tags/wiki/Built-In-Connectors#viaf)
