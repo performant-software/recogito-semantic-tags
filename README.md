@@ -22,9 +22,9 @@ The widget includes built-in connectors to the following data sources:
 
 You can add your own connectors, too! [Learn how](https://github.com/performant-software/recogito-semantic-tags/wiki/Writing-your-own-Connectors).
 
-## Use in RecogitoJS
+## Use with RecogitoJS/Annotorious
 
-Include RecogitoJS/Annotorious and the plugin script in the head of your page. Initialize RecogitoJS
+Include RecogitoJS/Annotorious and the plugin script in the head of your page. Initialize the annotator
 normally, and add the plugin as a widget.
 
 ```html
