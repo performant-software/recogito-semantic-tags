@@ -11,7 +11,10 @@ const SearchInput = props => {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [])
+  }, []);
+
+  const onChangeLanguage = evt =>
+    props.onChangeLanguage(evt.target.value);
 
   return (
     <div className="r6o-semtags-search">
@@ -23,7 +26,17 @@ const SearchInput = props => {
       
       <div className="icons">
         <div className="lang">
-          <label>{props.lang}</label>
+          {props.languages.length > 1 ?
+            <select onChange={onChangeLanguage}>
+              {props.languages.map(lang => 
+                <option
+                  key={lang}
+                  value={lang}
+                  selected={lang === props.currentLanguage}>{lang}</option>
+              )}
+            </select> :
+            <label>{props.currentLanguage}</label>
+          }
         </div>
         <SearchIcon width={18} />
       </div>

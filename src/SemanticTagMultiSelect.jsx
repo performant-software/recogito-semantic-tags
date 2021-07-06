@@ -21,6 +21,8 @@ const SemanticTagMultiSelect = props => {
 
   const [ query, setQuery ] = useState(props.query);
 
+  const [ queryLang, setQueryLang ] = useState(props.config.language || 'en');
+
   const [ loadState, setLoadState ] = useState('LOADING');
 
   const [ suggestions, setSuggestions ] = useState([]);
@@ -34,7 +36,7 @@ const SemanticTagMultiSelect = props => {
 
     if (isDropdownOpen && query)
       props.selectedSource
-        .query(query, props.config)
+        .query(query, {...props.config, ...{ language: queryLang } })
         .then(suggestions => {
           setLoadState('LOADED');
           setSuggestions(suggestions);
@@ -43,9 +45,15 @@ const SemanticTagMultiSelect = props => {
           console.error(error);
           setLoadState('FAILED')
         });
-  }, [ isDropdownOpen, query, props.selectedSource ]);
+  }, [ isDropdownOpen, query, queryLang, props.selectedSource ]);
 
   useClickOutside(elem, () => setIsDropdownOpen(false));
+
+  const languages = props.config.availableLanguages ?
+    Array.from(new Set([ 
+      (props.config.language || 'en'), 
+      ...props.config.availableLanguages 
+    ])) : [ (props.config.language || 'en') ];
 
   const onToggleDropdown = () =>
     setIsDropdownOpen(!isDropdownOpen);
@@ -83,11 +91,12 @@ const SemanticTagMultiSelect = props => {
         <div className="r6o-semtags-dropdown-container">
           <div className="r6o-semtags-dropdown">
             <div className="r6o-semtags-dropdown-top">
-
               <SearchInput 
                 value={query} 
-                lang={props.config.language}
-                onChange={onQueryChanged} />
+                languages={languages.map(l => l.toLowerCase())}
+                currentLanguage={queryLang.toLowerCase()}
+                onChange={onQueryChanged} 
+                onChangeLanguage={setQueryLang} />
 
               <SourcesList
                 dataSources={props.dataSources}
