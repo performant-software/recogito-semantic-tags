@@ -48,7 +48,7 @@ normally, and add the plugin as a widget.
             'VIAF'
           ],
 
-          // Pre-set search language (defaults 'en'), set to
+          // Pre-set search language (defaults to 'en'), set to
           // 'auto' to detect browser language
           language: 'en', 
 
