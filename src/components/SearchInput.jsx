@@ -10,7 +10,7 @@ const SearchInput = props => {
   const inputRef = useRef();
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current.focus({ preventScroll: true });
   }, []);
 
   const onChangeLanguage = evt =>

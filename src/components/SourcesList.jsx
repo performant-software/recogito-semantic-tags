@@ -8,7 +8,18 @@ const SourcesList = props => {
   const el = useRef();
 
   useEffect(() => {
-    el.current?.querySelector('.selected').scrollIntoView()
+    const currentSelected = el.current?.querySelector('.selected');
+    if (currentSelected) {
+      const { left, width } = currentSelected.getBoundingClientRect();
+      const parentBounds = currentSelected.parentNode.getBoundingClientRect();
+
+      const scrollBy = Math.ceil(left + width - parentBounds.right);
+
+      currentSelected.parentNode.scroll({
+        left: scrollBy > 0 ? width : 0,
+        behavior: 'smooth'
+      });
+    }
   }, [ props.selectedSource ]);
 
   const selectedIdx =
