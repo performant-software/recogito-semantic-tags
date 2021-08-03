@@ -31,7 +31,7 @@
     "react-dom": "^16.14.0"
   },
   "dependencies": {
-    "@recogito/recogito-client-core": "^1.2.3",
+    "@recogito/recogito-client-core": "^1.4.3",
     "browser-xml2js": "^0.4.19",
     "rc-tooltip": "^5.1.1",
     "react-debounce-input": "^3.2.3",
