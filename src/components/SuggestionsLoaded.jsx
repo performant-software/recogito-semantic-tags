@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiBookOpen, FiMapPin, FiUser, FiUsers } from 'react-icons/fi';
+import { BiLinkExternal } from 'react-icons/bi';
 import { format } from '../connectors';
 
 import './SuggestionsLoaded.scss';
@@ -25,10 +26,14 @@ const SuggestionsLoaded = props => {
               <>
                 <span className="icon">{ICONS[suggestion.type]}</span>
 
+                {suggestion.label}
+
                 <a 
                   onClick={evt => evt.stopPropagation()}
                   href={suggestion.uri}
-                  target="_blank">{suggestion.label}</a>
+                  target="_blank">
+                  <BiLinkExternal className="external"/>
+                </a>
               </> :
 
               <>
