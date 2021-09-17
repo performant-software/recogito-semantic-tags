@@ -66,6 +66,10 @@
     box-sizing:border-box;
     padding:12px 10px;
     margin:0;
+    padding-right:95px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
   }
 
 }

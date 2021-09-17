@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 
 import { SearchIcon } from '../Icons';
@@ -8,10 +8,6 @@ import './SearchInput.scss';
 const SearchInput = props => {
 
   const inputRef = useRef();
-
-  useEffect(() => {
-    inputRef.current.focus({ preventScroll: true });
-  }, []);
 
   const onChangeLanguage = evt =>
     props.onChangeLanguage(evt.target.value);
