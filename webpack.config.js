@@ -79,9 +79,15 @@ module.exports = {
       '/bnf': {
         target: 'https://catalogue.bnf.fr/api/SRU',
         pathRewrite: { '^/bnf' : '' },
-        secure: false,
+        secure: true,
         changeOrigin: true
-      }
+      },
+      '/dpla': {
+        target: 'https://api.dp.la/v2/items',
+        pathRewrite: { '^/dpla' : '' },
+        secure: true,
+        changeOrigin: true
+      },
     }
   },
   plugins: [

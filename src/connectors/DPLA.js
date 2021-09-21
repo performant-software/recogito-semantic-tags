@@ -10,16 +10,20 @@ export default class DPLA {
    * a list of suggestions
    */
   query(query) {
-    return fetch(`https://api.dp.la/v2/items?q=${query}&api_key=${this.config.apiKey}`)
+    return fetch(`/dpla?q=${query}&api_key=${this.config.apiKey}`)
       .then(response => response.json())
-      .then(data => data.docs.map(doc => {
-        const uri = doc.isShownAt;
-        const label = doc.sourceResource.title[0];
-        const description = doc.sourceResource.creator[0];
-        return {
-          uri, label, description
-        }
-      }));
+      .then(data => { 
+        console.log(data);
+        data.docs.map(doc => {
+          const uri = doc.isShownAt;
+          const label = doc.sourceResource.title[0];
+          const description = doc.sourceResource.creator[0];
+          return {
+            uri, label, description
+          }
+        })
+      }
+    );
   }
 
 }
