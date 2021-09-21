@@ -36,19 +36,24 @@ export default class BNF {
               reject(error);
             } else {
               // SRU. Why?!?
-              const records = result['srw:searchRetrieveResponse']['srw:records'][0]['srw:record']
-                .map(record => record['srw:recordData'][0]['oai_dc:dc'][0]);
+              const recordPayload = result['srw:searchRetrieveResponse']['srw:records'][0]['srw:record'];
 
-              const mapped = records.map(record => {
-                return {
-                  uri: getProp(record, 'dc:identifier'),
-                  label: JSON.stringify(getProp(record, 'dc:title')),
-                  description: getProp(record, 'dc:description'),
-                  type: 'Work'
-                }
-              });
+              if (recordPayload) {
+                const records = recordPayload.map(record => record['srw:recordData'][0]['oai_dc:dc'][0]);
+            
+                const mapped = records.map(record => {
+                  return {
+                    uri: getProp(record, 'dc:identifier'),
+                    label: JSON.stringify(getProp(record, 'dc:title')),
+                    description: getProp(record, 'dc:description'),
+                    type: 'Work'
+                  }
+                });
 
-              resolve(mapped);
+                resolve(mapped);
+              } else {
+                resolve([]);
+              }
             }
           });
         });
