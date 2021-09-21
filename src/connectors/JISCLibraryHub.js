@@ -20,14 +20,14 @@ export default class JISCLibraryHub {
   query(query) {
     return fetch('/jisc/search?format=json&keyword=' + query)
       .then(response => response.json())
-      .then(data => data.records.map(result => {
-        const { uri, bibliographic_data } = result;
-        return { 
-          uri: result.uri,
-          label: getData(result, 'title'),
-          description: concatData(result, [ 'author', 'publication_details' ])
-        }
-      }));
+      .then(data => 
+        data.records ? 
+          data.records.map(result => ({
+            uri: result.uri,
+            label: getData(result, 'title'),
+            description: concatData(result, [ 'author', 'publication_details' ])
+          })) : []
+      )
   }
 
 }
