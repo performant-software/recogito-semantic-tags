@@ -15,3 +15,9 @@
   to = "https://catalogue.bnf.fr/api/SRU:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/dpla/*"
+  to = "https://api.dp.la/v2/items:splat"
+  status = 200
+  force = true
