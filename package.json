@@ -1,6 +1,6 @@
 {
   "name": "@recogito/recogito-semantic-tags",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A generic semantic tagging widget for RecogitoJS and Annotorious",
   "main": "src/index.jsx",
   "scripts": {
