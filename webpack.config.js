@@ -16,6 +16,7 @@ module.exports = {
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
+  
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM'
@@ -23,6 +24,7 @@ module.exports = {
   performance: {
     hints: false
   },
+  devtool: 'source-map',
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
