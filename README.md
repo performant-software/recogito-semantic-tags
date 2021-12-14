@@ -1,14 +1,14 @@
 # Recogito Semantic Tags Widget
 
-A semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js) 
+A semantic tagging widget for [RecogitoJS](https://github.com/recogito/recogito-js)
 and [Annotorious](https://github.com/recogito/annotorious). Live demo available
-[here](https://recogito-semantic-tags.netlify.app/). Detailed documentation is 
+[here](https://recogito-semantic-tags.netlify.app/). Detailed documentation is
 [on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki).
 
-The widget can also be imported and used as a normal React component, similar to a standard 
+The widget can also be imported and used as a normal React component, similar to a standard
 multi-select dropdown. [Read more on the Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-as-a-React-Component).
 
-![Example](screencast.gif)
+![Example](https://github.com/performant-software/recogito-semantic-tags/blob/main/screencast.gif?raw=true)
 
 ## Datasources
 
@@ -50,14 +50,14 @@ normally, and add the plugin as a widget.
 
           // Pre-set search language (defaults to 'en'), set to
           // 'auto' to detect browser language
-          language: 'en', 
+          language: 'en',
 
-          // Optional additional search languages the 
+          // Optional additional search languages the
           // user can switch to
           availableLanguages: [
             'en', 'de', 'es'
           ]
-          
+
           // Search result page length (default 20)
           limit: 10
         };
@@ -79,5 +79,5 @@ normally, and add the plugin as a widget.
 </html>
 ```
 
-For more details on how to configure the plugin and data sources, see the 
+For more details on how to configure the plugin and data sources, see the
 [Wiki](https://github.com/performant-software/recogito-semantic-tags/wiki/Using-with-RecogitoJS-or-Annotorious).
