@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 const APP_DIR = fs.realpathSync(process.cwd());
 
@@ -26,14 +25,17 @@ module.exports = {
   },
   devtool: 'source-map',
   optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimize: true
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
       'react': 'preact/compat',
       'react-dom': 'preact/compat'
+    },
+    fallback: {
+      'buffer': false,
+      'querystring': false
     }
   },
   module: {
@@ -60,12 +62,14 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: resolveAppPath('public'),
     compress: true,
     hot: true,
     host: process.env.HOST || 'localhost',
     port: 3000,
-    publicPath: '/',
+    static: {
+      directory: resolveAppPath('public'),
+      publicPath: '/'
+    },
     proxy: {
       '/viaf': {
         target: 'http://www.viaf.org/',
