@@ -40,10 +40,18 @@ export default class WikidataLexeme {
       .then(data => data.results.bindings.map(result => {
         return { 
           uri: result.lf?.value,
+		  uri2: (this.config?.wordformmode ? (result.lfgram?.value ?? "") : (result.senseval?.value ?? "")),
 		  senseuri: result.senseval?.value ?? "",
 		  senselabel: result.senselabel?.value ?? "",
+		  sensetaglabel: result.senselabel?.value ? result.senselabel?.value+"("+result.senseval?.value.substring(result.senseval?.value.indexOf('entity/Q') + 7)+")" : "",
 		  sensedescription: (result.senselabel?.value ?? "")+" "+("("+result.senseval?.value+")" ?? ""),
-          label: (result.lemma?.value ?? "")+" ("+(result.gflabel?.value ?? "")+") ["+(result.senselabel?.value ?? "")+"]", 
+		  description2: (this.config?.wordformmode ? (result.gflabel?.value ?? "")+" "+("("+(result.lfgram?.value ?? "")+")" ?? ""): (result.senselabel?.value ?? "")+" "+("("+result.senseval?.value+")" ?? "")),
+		  wordformlabel: (result.gflabel?.value ?? ""),
+		  wordformuri: (result.lfgram?.value ?? ""),
+		  wordformmode: (this.config?.wordformmode ?? false),
+          label: (result.lemma?.value ?? ""), 
+		  label2: (this.config?.wordformmode ? (result.gflabel?.value ?? "") : (result.senselabel?.value ?? "")),
+		  taglabel: result.lemma?.value ? result.lemma?.value+"("+result.lf?.value.substring(result.lf?.value.indexOf('entity/Q') + 7)+")" : result.lf?.value.substring(result.lf?.value.indexOf('entity/Q') + 7),
           description: "Word "+(result.lemma?.value ?? "")+" in "+(result.gflabel?.value ?? "")+" with sense "+(result.senselabel?.value ?? "")
         };
       }));
@@ -59,4 +67,4 @@ WikidataLexeme.matches = tag =>
   tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/L/g);
 
 WikidataLexeme.format = tag =>
-  tag.uri.substring(tag.uri.indexOf('entity/L') + 7);
+  (tag.label?tag.label+"(":"")+tag.uri.substring(tag.uri.indexOf('entity/') + 7)+(tag.label?")":"");

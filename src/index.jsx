@@ -88,34 +88,24 @@ const SemanticTagPlugin = config => props => {
   // Tags can only be added once (no multiple tags with same URI!)
   const onUpsertTag = tag => {
     const existing = tagBodies.find(b => b.source === tag.uri);
-	const existing2 = tagBodies.find(b => b.source === tag.senseuri);
-	if(existing && existing2){
-	  props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"update", "previous":existing2,"updated":tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})}])
-	}else if(existing && !existing2){
-		props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})}])
-	}else if(!existing && existing2){
-		props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"update", "previous":existing2, "updated":tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})}])	
+	if(tag.senseuri){
+		const existing2 = tagBodies.find(b => b.source === tag.uri2);
+		if(existing && existing2){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"update", "previous":existing2,"updated":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])
+		}else if(existing && !existing2){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])
+		}else if(!existing && existing2){
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"update", "previous":existing2, "updated":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])	
+		}else{
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])		
+		}
 	}else{
-		console.log(props)
-		console.log([{"action":"append", "body":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})}])
-		props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})}])		
+		if(existing){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)}])
+		}else{
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)}])
+		}
 	}
-	/*console.log(existing)
-	if (existing2)
-      props.onUpdateBody(existing2, tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription}));
-
-    else
-	  console.log(tag)
-      console.log("Append new body: "+JSON.stringify(tagToBody(tag)))
-      props.onAppendBody(tagToBody(tag));
-
-	console.log(tag)
-	console.log(existing2)
-
-    else
-	  console.log("Append new body: "+JSON.stringify(tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription})))
-      tagBodies.push(tagToBody({uri:tag.senseuri,label:tag.senselabel,description:tag.sensedescription}));*/
-    console.log(props.annotation.bodies)
   }
 
   return (

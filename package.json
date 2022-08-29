@@ -35,6 +35,6 @@
     "react-debounce-input": "^3.3.0",
     "react-icons": "^4.4.0",
     "react-transition-group": "^4.4.5",
-    "wikidata-sdk": "^8.0.3"
+    "wikidata-sdk": "^7.13.0"
   }
 }

@@ -79,4 +79,5 @@ Wikidata.matches = tag =>
   tag.uri.match(/^https?:\/\/www.wikidata.org\/entity\/Q/g);
 
 Wikidata.format = tag =>
-  tag.uri.substring(tag.uri.indexOf('entity/Q') + 7);
+   console.log(tag)
+  (tag.label?tag.label+"(":"")+tag.uri.substring(tag.uri.indexOf('entity/Q') + 7)+(tag.label?")":"");
