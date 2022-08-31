@@ -9,6 +9,17 @@ export default class WikidataLexeme {
   }
 
   query(query, globalConfig) {
+	if(this.config?.normpattern){
+		var target=""
+		if(this.config?.targetpattern){
+			target=this.config?.targetpattern
+		}
+		try{
+			query=query.replaceAll(this.config?.normpattern,target)
+		}catch(error){
+			print(error)
+		}
+	}
     return this.queryFiltered(query, globalConfig)
   }
 
