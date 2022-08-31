@@ -10,16 +10,27 @@ export default class WikidataLexeme {
 
   query(query, globalConfig) {
 	if(this.config?.normpattern){
-		var target=""
-		if(this.config?.targetpattern){
-			target=this.config?.targetpattern
-		}
-		try{
-			query=query.replaceAll(this.config?.normpattern,target)
-		}catch(error){
-			print(error)
+		console.log(this.config?.normpattern)
+		if(typeof this.config?.normpattern === 'function'){
+			console.log(this.config?.normpattern)
+			try{
+				query=this.config?.normpattern(query)
+			}catch(error){
+				console.log(error)
+			}			
+		}else{
+			var target=""
+			if(this.config?.targetpattern){
+				target=this.config?.targetpattern
+			}
+			try{
+				query=query.replaceAll(this.config?.normpattern,target)
+			}catch(error){
+				console.log(error)
+			}		
 		}
 	}
+	console.log(query)
     return this.queryFiltered(query, globalConfig)
   }
 
