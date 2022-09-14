@@ -7,8 +7,23 @@ export default class WikidataLexeme {
     this.name = opt_config?.name || 'WikidataLexeme';
     this.config = opt_config;
   }
+  
+  getHTMLSelection(){
+	let selection=document.getSelection()
+	result=document.createElement("div")
+	for(let i=0;i<selection.rangeCount;i++){
+		result.append(selection.getRangeAt(i).cloneContents())
+	}
+	return result.innerHTML
+  }
 
   query(query, globalConfig) {
+	console.log(window.getSelection())
+	console.log("SELECTION: "+query+" - "+window.getSelection().toString())
+	if(this.config?.matchHTML && query==window.getSelection().toString()){	
+		query=getHTMLSelection()
+		console.log("SELECTION: "+query)
+	}
 	if(this.config?.normpattern){
 		console.log(this.config?.normpattern)
 		if(typeof this.config?.normpattern === 'function'){
