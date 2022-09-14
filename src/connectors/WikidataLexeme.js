@@ -9,8 +9,8 @@ export default class WikidataLexeme {
   }
   
   getHTMLSelection(){
-	let selection=document.getSelection()
-	result=document.createElement("div")
+	let selection=this.document.getSelection()
+	result=this.document.createElement("div")
 	for(let i=0;i<selection.rangeCount;i++){
 		result.append(selection.getRangeAt(i).cloneContents())
 	}
@@ -18,9 +18,9 @@ export default class WikidataLexeme {
   }
 
   query(query, globalConfig) {
-	console.log(window.getSelection())
-	console.log("SELECTION: "+query+" - "+window.getSelection().toString())
-	if(this.config?.matchHTML && query==window.getSelection().toString()){	
+	console.log(this.document.getSelection())
+	console.log("SELECTION: "+query+" - "+this.document.getSelection().toString())
+	if(this.config?.matchHTML && query==this.document.getSelection().toString()){	
 		query=getHTMLSelection()
 		console.log("SELECTION: "+query)
 	}
@@ -33,6 +33,16 @@ export default class WikidataLexeme {
 			}catch(error){
 				console.log(error)
 			}			
+		}else if(typeof this.config?.normpattern === 'object' && Array.isArray(this.config?.normpattern)){
+			for(item in array){
+				if("from" in array[item] && "to" in array[item]){
+					try{
+						query=query.replaceAll(array[item]["from"],array[item]["to"])
+					}catch(error){
+						console.log(error)
+					}	
+				}
+			}
 		}else{
 			var target=""
 			if(this.config?.targetpattern){
