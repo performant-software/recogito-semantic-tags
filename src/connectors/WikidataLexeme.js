@@ -130,7 +130,7 @@ export default class WikidataLexeme {
           label: (result.lemma?.value ?? ""), 
 		  label2: (this.config?.wordformmode ? (result.gflabel?.value ?? "") : (result.senselabel?.value ?? "")),
 		  taglabel: result.lemma?.value ? result.lemma?.value+"("+result.lf?.value.substring(result.lf?.value.indexOf('entity/Q') + 7)+")" : result.lf?.value.substring(result.lf?.value.indexOf('entity/Q') + 7),
-          description: "Word "+(result.lemma?.value ?? "")+" in "+(result.gflabel?.value ?? "")+" with sense "+(result.senselabel?.value ?? "")
+          description: "Word "+(result.lemma?.value ?? "")+(result.gflabel?.value ? " in "+result.gflabel?.value : "")+" with sense "+(result.senselabel?.value ?? "")
         };
       }));
   }
