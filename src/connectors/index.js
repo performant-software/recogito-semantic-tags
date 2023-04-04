@@ -2,6 +2,7 @@ import BNF from './BNF';
 import DPLA from './DPLA';
 import JISCLibraryHub from './JISCLibraryHub';
 import VIAF from './VIAF';
+import FactGrid from './FactGrid';
 import Wikidata from './Wikidata';
 import WikidataLexeme from './WikidataLexeme';
 
@@ -10,6 +11,7 @@ const BUILTIN_CONNECTORS = {
   'dpla': DPLA,
   'jisc': JISCLibraryHub,
   'viaf': VIAF,
+  'factgrid': FactGrid,
   'wikidata': Wikidata,
   'wikidatalexeme': WikidataLexeme
 }
