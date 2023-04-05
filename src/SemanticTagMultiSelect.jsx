@@ -58,6 +58,9 @@ const SemanticTagMultiSelect = props => {
   const onToggleDropdown = () =>
     setIsDropdownOpen(!isDropdownOpen);
 
+  const onBatchModify = modifications =>
+	props.onBatchModify(modifications);
+
   const onQueryChanged = evt =>
     setQuery(evt.target.value);
 

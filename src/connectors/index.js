@@ -2,14 +2,18 @@ import BNF from './BNF';
 import DPLA from './DPLA';
 import JISCLibraryHub from './JISCLibraryHub';
 import VIAF from './VIAF';
+import FactGrid from './FactGrid';
 import Wikidata from './Wikidata';
+import WikidataLexeme from './WikidataLexeme';
 
 const BUILTIN_CONNECTORS = {
   'bnf': BNF,
   'dpla': DPLA,
   'jisc': JISCLibraryHub,
   'viaf': VIAF,
-  'wikidata': Wikidata
+  'factgrid': FactGrid,
+  'wikidata': Wikidata,
+  'wikidatalexeme': WikidataLexeme
 }
 
 export const instantiateSource = nameOrObject => { 

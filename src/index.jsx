@@ -88,10 +88,24 @@ const SemanticTagPlugin = config => props => {
   // Tags can only be added once (no multiple tags with same URI!)
   const onUpsertTag = tag => {
     const existing = tagBodies.find(b => b.source === tag.uri);
-    if (existing)
-      props.onUpdateBody(existing, tagToBody(tag));
-    else
-      props.onAppendBody(tagToBody(tag));
+	if(tag.senseuri){
+		const existing2 = tagBodies.find(b => b.source === tag.uri2);
+		if(existing && existing2){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"update", "previous":existing2,"updated":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])
+		}else if(existing && !existing2){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])
+		}else if(!existing && existing2){
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"update", "previous":existing2, "updated":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])	
+		}else{
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)},{"action":"append", "body":tagToBody({uri:tag.uri2,label:tag.label2,description:tag.description2})}])		
+		}
+	}else{
+		if(existing){
+			props.onBatchModify([{"action":"update", "previous":existing,"updated":tagToBody(tag)}])
+		}else{
+			props.onBatchModify([{"action":"append", "body":tagToBody(tag)}])
+		}
+	}
   }
 
   return (

@@ -32,8 +32,10 @@ const SuggestionsLoaded = props => {
                   onClick={evt => evt.stopPropagation()}
                   href={suggestion.uri}
                   target="_blank">
-                  <BiLinkExternal className="external"/>
+                  <BiLinkExternal className="external"/> 
                 </a>
+				{suggestion.wordformuri ? <a href={suggestion.wordformuri} className="id" onClick={evt => evt.stopPropagation()} target="_blank">({suggestion.wordformlabel})</a>:''}
+				{suggestion.senseuri ? <a href={suggestion.senseuri} className="id" onClick={evt => evt.stopPropagation()} target="_blank">[{suggestion.senselabel}]</a>:''}
               </> :
 
               <>
@@ -41,7 +43,9 @@ const SuggestionsLoaded = props => {
                   className="id" 
                   onClick={evt => evt.stopPropagation()}
                   href={suggestion.uri} 
-                  target="_blank">{format(suggestion)}</a> {suggestion.label}
+                  target="_blank">{format(suggestion)}</a>  
+				  {suggestion.wordformuri ? <a href={suggestion.wordformuri} className="id" onClick={evt => evt.stopPropagation()} target="_blank">({suggestion.wordformlabel})</a>:''}
+				  {suggestion.senseuri ? <a href={suggestion.senseuri} className="id" onClick={evt => evt.stopPropagation()} target="_blank">[{suggestion.senselabel}]</a>:''}
               </>
             } 
           </label>

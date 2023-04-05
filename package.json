@@ -10,31 +10,31 @@
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@babel/core": "^7.14.2",
+    "@babel/core": "^7.18.13",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.5",
     "css-loader": "^5.2.6",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.34.1",
     "sass-loader": "^10.2.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.66.0",
-    "webpack-cli": "^4.9.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.3"
   },
   "peerDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@recogito/recogito-client-core": "^1.4.3",
+    "@recogito/recogito-client-core": "^1.7.4",
     "browser-xml2js": "^0.4.19",
-    "rc-tooltip": "^5.1.1",
-    "react-debounce-input": "^3.2.3",
-    "react-icons": "^4.2.0",
-    "react-transition-group": "^4.4.2",
+    "rc-tooltip": "^5.2.2",
+    "react-debounce-input": "^3.3.0",
+    "react-icons": "^4.4.0",
+    "react-transition-group": "^4.4.5",
     "wikidata-sdk": "^7.13.0"
   }
 }
